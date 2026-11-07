@@ -1,0 +1,93 @@
+{
+  "theme": "light",
+  "colors": {
+    "background": "#FAFAF9",
+    "surface": "#FFFFFF",
+    "primary": "#D97706",
+    "primary_hover": "#B45309",
+    "text_primary": "#1C1917",
+    "text_secondary": "#57534E",
+    "border": "#E7E5E4",
+    "accent_light": "#FEF3C7",
+    "accent_dark": "#78350F"
+  },
+  "typography": {
+    "heading_font": "Fraunces, serif",
+    "body_font": "Manrope, sans-serif",
+    "rules": [
+      "Use Fraunces (or Playfair Display) for all headings to give a distinctive, warm, craft-brew editorial feel.",
+      "Use Manrope for body text and UI elements to ensure modern readability.",
+      "Headings (text-3xl+) MUST use tight letter spacing (tracking-tight or tracking-tighter).",
+      "Do not use Inter, Roboto, or Open Sans for headings.",
+      "Body text should have leading-relaxed for high readability."
+    ]
+  },
+  "layouts": {
+    "navigation": "Sticky header with backdrop-blur-xl and bg-white/70 glassmorphism. Include Custom SVG logo mark (beer-foam/neural-node hybrid), navigation links, and a primary CTA 'Join Waitlist'. Must not be fully transparent.",
+    "hero": "Kinetic hero section with generous padding (py-32). Use Framer Motion for line-by-line masked text reveals. Integrate a parallax hero visual alongside or beneath the text. Include a distinctive 'Coming soon to Delhi NCR & Hyderabad' badge.",
+    "concept_strip": "Horizontal strip mixing 3 real photography images (lecture, drinks, networking) with large typographic facts. Overlap elements slightly to break the grid.",
+    "timeline": "Horizontal-scroll timeline mapping the event evening: 'Doors & drink' -> 'Talk' -> 'Q&A' -> 'AI Summary in inbox' -> 'Networking'. Use a connecting SVG line.",
+    "bento_grid": "Asymmetrical 'Tetris' feature bento grid (col-span-full, col-span-2, etc.) covering: AI categories, curriculum builder, event summaries, forums, moderated circles, explore feed, leaderboard, and courses. Avoid equal squares.",
+    "marquee": "Slow editorial marquee using react-fast-marquee showing AI topics and cities. Use the heading font, large outline or pale text.",
+    "city_cards": "Launch city cards for Delhi NCR and Hyderabad featuring architecture shots + an abstract 'next-cities' teaser card. Use image hover zoom effects.",
+    "waitlist": "Footer-area waitlist CTA with high contrast (maybe dark amber background). Email input + role selection dropdown (Corporate, Speaker, Member)."
+  },
+  "components": {
+    "buttons": "Pill-shaped (rounded-full) or crisp rectangular with slight radius. Must have hover animations (slight scale or shadow lift). Primary color is Amber (#D97706).",
+    "cards": "Subtle borders (border-stone-200), minimal shadows unless hovered. Solid white background. Do not overuse cards; try borderless text-heavy sections for variety.",
+    "forms": "Use Shadcn components for Select and Input. Customize to remove the default 'Vercel-look' (e.g., warmer focus rings, softer borders)."
+  },
+  "visual_enhancers": {
+    "motion": [
+      "Lenis smooth scrolling is MANDATORY for the premium feel.",
+      "Framer Motion for staggered text reveals in the hero and bento grid.",
+      "Parallax on the hero image (use framer-motion useScroll).",
+      "Micro-interactions on hover (buttons, city cards, bento items)."
+    ],
+    "icons": "Use exclusively lucide-react. NO EMOJIS anywhere.",
+    "textures": "Include a very subtle noise overlay (SVG filter or CSS pattern) to kill the 'digital flatness' and enforce the 'brew' texture."
+  },
+  "image_urls": {
+    "hero_parallax": {
+      "url": "https://images.unsplash.com/photo-1575444758702-4a6b9222336e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1MDV8MHwxfHNlYXJjaHwyfHxtb2Rlcm4lMjBiYXIlMjBjcm93ZHxlbnwwfHx8fDE3OTQwNDY1OTV8MA&ixlib=rb-4.1.0&q=85",
+      "description": "Warm modern bar crowd - use for parallax hero background or adjacent visual with a light/amber overlay."
+    },
+    "concept_lecture": {
+      "url": "https://images.unsplash.com/photo-1772690445981-78b22eacda4b?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2ODh8MHwxfHNlYXJjaHwzfHxuZXR3b3JraW5nJTIwZXZlbnR8ZW58MHx8fHwxNzk0MDQ2NTg0fDA&ixlib=rb-4.1.0&q=85",
+      "description": "Panel discussion for the 'talk' concept."
+    },
+    "concept_drinks": {
+      "url": "https://images.unsplash.com/photo-1698925724585-80e161c60a9a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1OTN8MHwxfHNlYXJjaHwxfHxwZW9wbGUlMjBkcmlua2luZyUyMGJlZXIlMjBwdWJ8ZW58MHx8fHwxNzk0MDQ2NTg0fDA&ixlib=rb-4.1.0&q=85",
+      "description": "Toasting beers for the 'pint on us' concept."
+    },
+    "concept_networking": {
+      "url": "https://images.unsplash.com/photo-1531058020387-3be344556be6?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2ODh8MHwxfHNlYXJjaHwyfHxuZXR3b3JraW5nJTIwZXZlbnR8ZW58MHx8fHwxNzk0MDQ2NTg0fDA&ixlib=rb-4.1.0&q=85",
+      "description": "Networking crowd for the 'after-talk' concept."
+    },
+    "city_delhi": {
+      "url": "https://images.unsplash.com/photo-1575566668200-7dcaa7b2cf28?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA2MDV8MHwxfHNlYXJjaHwyfHxkZWxoaSUyMGFyY2hpdGVjdHVyZXxlbnwwfHx8fDE3OTQwNDY1ODR8MA&ixlib=rb-4.1.0&q=85",
+      "description": "Delhi NCR architecture for the launch city card."
+    },
+    "city_hyderabad": {
+      "url": "https://images.unsplash.com/photo-1696941515998-d83f24967aca?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODF8MHwxfHNlYXJjaHwxfHxoeWRlcmFiYWQlMjBjaXR5fGVufDB8fHx8MTc5NDA0NjU4NHww&ixlib=rb-4.1.0&q=85",
+      "description": "Hyderabad Charminar for the launch city card."
+    }
+  },
+  "instructions_to_main_agent": [
+    "Build the custom SVG logo exactly as described: an interplay between a beer-foam shape and neural-node network points.",
+    "Strictly apply a Mobile First approach (390px base).",
+    "Implement Lenis for momentum scrolling (import ReactLenis).",
+    "Do not use generic centered layouts. Use asymmetrical alignments, dynamic grid spans, and generous padding (p-8 to p-32).",
+    "Include data-testid attributes for interactive elements (buttons, inputs, waitlist form submit).",
+    "Construct the UI in standard React (+ JS, not TSX) files within the provided scaffolding.",
+    "Form submission for the waitlist must simulate success or hit a mock backend endpoint, capturing Email + Role."
+  ],
+  "UNIVERSAL GUIDELINES FOR MAIN AGENT": [
+    "You tend to converge toward generic, 'on distribution' outputs. In frontend design, this creates what users call the 'AI slop' aesthetic. Avoid this: make creative, distinctive frontends that surprise and delight.",
+    "Never use AI assistant emojis (🤖, 💡, 🧠). Use clean lucide-react SVGs.",
+    "Every interaction needs micro-animations - hover states, transitions. Static = dead.",
+    "Use 2-3x more spacing than feels comfortable. Cramped designs look cheap.",
+    "Subtle grain textures, custom selection states, and proper z-index layering separate good from extraordinary.",
+    "Ensure contrast rules are strictly met, especially when placing text over the warm amber elements or images."
+  ]
+}
