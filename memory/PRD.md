@@ -22,6 +22,7 @@ Single-page vision-showcase landing page with a real waitlist capture. No login,
 - Working waitlist backend (MongoDB) with role selection, duplicate detection, count endpoint.
 - Verified: POST /api/waitlist persists (count 2), duplicate returns friendly 409 message; desktop (1440) + mobile (390) screenshots pass; form submit → success state in UI.
 - Pitch deck (14-slide PPTX) and PRD (DOCX) built from the shared ChatGPT research synthesis (chatgpt.com/share/6aef156c + 6aeef8de); served as downloads from /brewed-intelligence-pitch-deck.pptx and /brewed-intelligence-prd.docx; build scripts in /app/scripts/deck/.
+- PDF version of the deck (vector, Fraunces + Manrope embedded) served from /brewed-intelligence-pitch-deck.pdf; verified 200 on localhost and the external preview host; all 14 pages visually checked via contact sheet.
 
 ## Backlog
 - P2: full accounts/auth, Explore feed, points/leaderboard engine, event pages with forums, circles, speaker onboarding + AI curriculum builder (phase 2).
