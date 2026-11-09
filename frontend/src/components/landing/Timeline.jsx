@@ -1,36 +1,36 @@
 import { motion } from "framer-motion";
-import { Beer, Mic2, MessagesSquare, MailCheck, Users } from "lucide-react";
+import { Beer, Mic2, Music, MessagesSquare, Users } from "lucide-react";
 
 const STEPS = [
   {
     icon: Beer,
-    time: "7:00 PM",
+    time: "6 PM",
     title: "Doors & first pint",
-    text: "Grab your name tag and your beer — it's on us. Find a seat, say hi to a stranger.",
+    text: "Grab your beer — it's on us — and your seat. Say hi to a stranger.",
   },
   {
     icon: Mic2,
-    time: "7:30 PM",
+    time: "45 minutes",
     title: "The talk",
-    text: "One speaker, one sharp AI topic. Agentic security, AI in finance, the developer ecosystem — your pick.",
+    text: "One speaker, one hot AI topic. Moderators assign the topic; the speaker brings the fire.",
+  },
+  {
+    icon: Music,
+    time: "A short act",
+    title: "Live performance",
+    text: "A quick act to reset the room — while you submit your questions for the speaker or panelists.",
   },
   {
     icon: MessagesSquare,
-    time: "8:15 PM",
-    title: "Q&A over refills",
-    text: "Ask the hard questions. The bar stays open and so does the mic.",
-  },
-  {
-    icon: MailCheck,
-    time: "9:00 PM",
-    title: "Summary in your inbox",
-    text: "The platform's AI condenses the whole session — key takeaways, links and reading list — while you network.",
+    time: "Towards the end",
+    title: "Moderator-led Q&A",
+    text: "Your session moderators read the submitted questions out loud. The bar stays open and so does the mic.",
   },
   {
     icon: Users,
-    time: "9:30 PM",
-    title: "Networking till late",
-    text: "Corporates, speakers and curious minds. The conversations the talk started keep going.",
+    time: "From 8 PM",
+    title: "Afters & networking",
+    text: "The conversations the talk started keep flowing.",
   },
 ];
 
@@ -51,6 +51,9 @@ export default function Timeline() {
           <h2 className="mt-4 font-display font-semibold tracking-tight text-3xl sm:text-4xl lg:text-5xl leading-tight">
             One evening. Five beats. Zero boring parts.
           </h2>
+          <p className="mt-4 text-sm sm:text-base text-white/60">
+            Doors at 6 PM. The night flows till 8 PM and beyond.
+          </p>
         </motion.div>
 
         <div className="mt-14 flex gap-6 overflow-x-auto pb-6 no-scrollbar snap-x snap-mandatory lg:overflow-visible lg:grid lg:grid-cols-5 lg:gap-5">
@@ -63,14 +66,19 @@ export default function Timeline() {
               transition={{ duration: 0.6, delay: i * 0.12 }}
               className="relative flex-none w-[270px] snap-center lg:w-auto"
             >
-              {/* connector */}
               <div className="hidden lg:block absolute top-6 left-0 right-0 h-px bg-white/15">
                 <div
                   className="h-px bg-amber-400 transition-all"
                   style={{ width: i === STEPS.length - 1 ? "0%" : "100%" }}
                 />
               </div>
-              <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-400 text-brew-ink shadow-lg shadow-amber-400/20">
+              <div
+                className={`relative z-10 flex h-12 w-12 items-center justify-center rounded-2xl shadow-lg ${
+                  i === 2
+                    ? "bg-brew-foam text-brew-amber-deep shadow-amber-400/10 ring-2 ring-amber-400/60"
+                    : "bg-amber-400 text-brew-ink shadow-amber-400/20"
+                }`}
+              >
                 <step.icon className="h-6 w-6" />
               </div>
               <p className="mt-5 text-xs font-extrabold uppercase tracking-widest text-amber-400/90">

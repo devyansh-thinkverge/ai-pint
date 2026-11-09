@@ -61,7 +61,7 @@ class WaitlistCreate(BaseModel):
 
 @api_router.get("/")
 async def root():
-    return {"message": "Brewed Intelligence API"}
+    return {"message": "AI Taproom API"}
 
 
 @api_router.post("/waitlist", response_model=WaitlistEntry)

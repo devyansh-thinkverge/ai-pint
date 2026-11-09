@@ -1,50 +1,46 @@
-# Brewed Intelligence — Landing Page Plan
+# AI Taproom — Rebrand, Delhi NCR Focus, Evening Rework & Topic Accordion
 
-A vision-showcase landing page for Brewed Intelligence, an AI-powered community platform for everything AI in India, launching first in Delhi NCR and Hyderabad. It pairs the fun of bar-hosted lectures (a pint on us, then networking) with a real product layer: AI-built talk curricula, event summaries, discussion forums, moderated circles, a points-and-leaderboard system and an Explore feed of the latest in AI.
+An AI-powered community platform for everything in AI in India — rebranding the current vision-showcase site and all companion assets from "Brewed Intelligence" to **AI Taproom** (domain: **aitaproom.club**), with "Brewed Intelligence" becoming the tagline beneath the name. Hyderabad is removed everywhere for now; Delhi NCR is the sole launch city. The event-evening timeline gains a live-performance segment used to collect audience questions, the per-item timestamps drop (just a 6 PM start and 8 PM finish), and the platform section's topic card becomes an expand/collapse list of upcoming session topics, since moderators — not speakers — assign each speaker their topic.
 
 ## Who it's for
 
-Primary audience is corporate teams — L&D leaders, managers and professionals who want engaging, high-signal AI learning and networking for their people. Secondary voices addressed on the same page: prospective speakers (experts who'd host a session) and the wider AI-curious crowd who join the waitlist.
+Unchanged: corporate teams in Delhi NCR (L&D leaders, managers, professionals) who want high-signal AI learning and networking; speakers whose topics are assigned by moderators; and the wider AI-curious crowd joining the waitlist. Investors and partners receive the rebranded deck and PRD.
 
-## Core features and experience (of the landing page)
+## Core features and experience (of this update)
 
-1. **Kinetic hero** — "Brewed Intelligence" wordmark with a masked line-by-line headline reveal on load, one supporting line positioning the idea ("Where India talks AI — over a pint"), primary CTA "Join the waitlist" and a "Coming soon to Delhi NCR & Hyderabad" badge. Subtle 3D/parallax drift on a hero visual.
-2. **The concept strip** — a short editorial section explaining the format with real photography treated deliberately (spotlight, clipped frames): lecture in a bar, beer on us, networking after.
-3. **Experience timeline** — a horizontal scroll timeline with a beer-icon marker walking through one event evening: doors & drink → talk on a hot AI topic → Q&A → AI-generated summary in your inbox → networking. Fun, interactive, not overloaded.
-4. **Feature bento (the platform)** — a properly aligned bento grid presenting the product features:
-   - AI topic categories speakers choose from (Agentic Security & Governance, AI in Industries, AI in Finance, AI in the Developer Ecosystem, etc.)
-   - AI curriculum builder that helps a speaker structure their talk
-   - Post-event AI summaries for attendees
-   - Discussion forums on every event
-   - Admin-moderated Circles (e.g., AI Security Posture Management)
-   - Explore feed — latest AI blogs, events and podcasts pulled in, plus member posts
-   - Points, streaks & leaderboard (daily.dev-style), redeemable on paid certification courses
-   - Certification courses as the paid layer
-5. **One slow editorial marquee** — scrolling strip of AI topic categories / city names.
-6. **Cities & coming soon** — Delhi NCR and Hyderabad launch cards with a light "next cities" teaser.
-7. **Waitlist CTA + footer** — a simple email capture form with role selection (corporate / speaker / member), storing submissions, plus socials and a short footer. Form is real and persists to the database.
+1. **Rebrand everywhere** — name becomes "AI Taproom" in the nav, footer, hero, browser title, SEO meta, Open Graph/Twitter cards, canonical URL (aitaproom.club), favicon text and the SVG logo wordmark; "Brewed Intelligence" renders as the tagline line beneath the name (footer and cover placements). The beer-foam/neural-node logo mark itself is kept — it fits the taproom identity. Email confirmations, page copy ("Brewed Intelligence is an AI-powered community…") and footer credits all switch to AI Taproom with the tagline honouring the old name.
+2. **Delhi NCR only** — hero badge becomes "Coming soon to Delhi NCR"; cities section becomes a two-card composition: one large Delhi NCR launch card plus the "Your city next?" teaser card (which now absorbs the Hyderabad energy without naming it as confirmed); marquee drops "Hyderabad"; footer, meta descriptions, deck slides and PRD all drop Hyderabad.
+3. **Evening timeline rework** — five beats, no per-item timestamps beyond a 6 PM start and 8 PM finish:
+   - Doors & first pint — 6 PM start, grab your beer (on us) and your seat
+   - The talk — 45 minutes on one hot AI topic
+   - Live performance — a short act while participants submit their questions for the speaker or panelists
+   - Moderator-led Q&A — the session moderators read the submitted questions towards the end
+   - Afters & networking — from 8 PM, the conversations keep flowing
+4. **Topic card becomes "The topics on stage"** — the bento card no longer says speakers pick a topic; copy states moderators assign each speaker their topic. The card displays the upcoming session topics (Agentic Security & Governance, AI in Industries, AI in Finance, AI in the Developer Ecosystem) as expand/collapse rows — tapping a topic reveals a short detail line on what the session covers; tapping again collapses it. Smooth height animation, chevron rotation, one topic open at a time.
+5. **Deck & PRD refresh** — pitch deck PPTX rebuilt with the new name/tagline, Delhi-only market slide (single wide Delhi image + next-city teaser card), aitaproom.club on the closing slide and footers; the PDF version regenerated from the same rebuilt deck; PRD document updated with the new name, domain, Delhi NCR launch scope, the moderator-assigned topic flow, and the new event-evening format including the live-performance question collection.
 
 ## User flow
 
-Land → hero reveal communicates the idea in seconds → scroll through concept → interactive timeline of an event evening → feature bento explains the platform → cities section confirms launch markets → CTA scrolls to the waitlist form → submit email + role → confirmation state. Nav links smooth-scroll to each section.
+Unchanged journey, refreshed surface: land on the AI Taproom hero → scroll the concept → walk the five-beat evening (noticing the live performance and how questions get collected) → open and close topics in the bento to see what sessions cover → confirm Delhi NCR as the launch city → join the waitlist (Corporate / Speaker / Member). Deck and PRD tell the same story for investors and partners.
 
 ## UI/UX feel
 
-Clean startup light as chosen: bright, airy, generous whitespace, one committed accent palette (warm amber "brew" tones on off-white, dark ink text), distinctive display typeface paired with a readable body face. Premium but restrained motion: framer-motion scroll reveals and micro-interactions, lenis momentum scrolling, one parallax hero moment, one marquee. Custom original logo mark (beer-foam/neural-node hybrid in a simple SVG) used in the nav, footer and as favicon. Fully responsive; mobile 390px is a first-class layout. No emoji icons — lucide-react icons throughout.
+Art direction stays exactly as built — warm amber on off-white, Fraunces + Manrope, grain overlay, lenis momentum scroll, framer-motion reveals, parallax hero. The new accordion adds one purposeful micro-interaction (animated height, rotating chevron, amber highlight on the open row); the timeline card for the live performance gets its own distinct treatment (music/performance icon) so the new beat feels native to the row.
 
 ## Implementation phases
 
-**Phase 1 — build now (the MVP):** the complete landing page as described above — hero, concept, timeline, feature bento, marquee, cities, waitlist form with working backend capture, logo + favicon, SEO meta and social-share tags, mobile polish. Verified end-to-end (form submissions persist, page loads cleanly on desktop and mobile).
+**Phase 1 — now:** everything above is one pass: rebrand across landing page + meta + favicon, Delhi-only edits, timeline rework with the performance beat, topics accordion card, rebuilt PPTX, rebuilt PDF, updated PRD — then end-to-end re-verification (waitlist still persists, desktop + mobile screenshots, deck/PDF download links live).
 
-**Phase 2 — after launch validation:** expand waitlist into full accounts; build the actual platform shell — Explore feed, points/leaderboard, event pages with forums and Circles; speaker onboarding with the AI curriculum builder.
+**Phase 2 — after launch validation:** unchanged — accounts, Explore feed, points/leaderboard, event pages with forums and Circles, speaker onboarding with AI curriculum builder (topics now arrive moderator-assigned).
 
-**Phase 3 — monetisation and scale:** paid certification course subscriptions with points redemption; corporate team plans; AI event-summary generation in production; more cities (Bangalore, Mumbai and beyond); ticketing for live events.
+**Phase 3 — monetisation and scale:** unchanged — paid certifications with points redemption, corporate plans, production AI summaries, more cities, ticketing.
 
 ## Assumptions
 
-- The name is Brewed Intelligence (user-confirmed); logo is designed fresh as an original SVG mark.
-- The page is a single-page vision showcase with a real waitlist capture; no login, no dashboard, no event booking in this phase.
-- All copy is written from the researched concept (Pint of View's bar-lecture format + daily.dev's points/feed model) — no invented stats, founders, dates or partners; any placeholder facts are clearly labelled.
-- Sample imagery uses stock photography fitting the bar-lecture/corporate-social vibe; no real event photos exist yet.
-- Points redemption, forums, circles, certification courses etc. are presented as upcoming product features on the page, not functioning software.
-- Emergent-managed email is not needed in phase 1; waitlist entries are stored in the app database only.
+- "Brewed Intelligence" survives only as the tagline/heritage line under "AI Taproom" — the product name is AI Taproom everywhere.
+- The existing SVG logo mark (beer-foam + neural nodes) is kept as-is; only the wordmark text next to it changes. Favicon unchanged.
+- Delhi NCR-only presentation: no Hyderabad mention anywhere as a launch city; the "next cities" teaser stays generic (no city named as committed).
+- Timeline uses no intermediate timestamps (per your choice) — only "6 PM" on the first beat and "8 PM" as the finish, with the talk noted as 45 minutes and the performance as a short act.
+- Topic accordion detail lines are short, generic session descriptions written as sample copy — clearly illustrative, not claims about booked speakers or dates.
+- aitaproom.club is used in canonical/OG/closing-slide text now, even though domain wiring happens outside this build.
+- Waitlist database stays untouched — the rebrand is presentation-only; existing entries remain valid.

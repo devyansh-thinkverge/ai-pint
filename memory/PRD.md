@@ -1,4 +1,6 @@
-# Brewed Intelligence — PRD
+# AI Taproom — PRD
+
+> Rebranded from "Brewed Intelligence" to AI Taproom (aitaproom.club) on 2026-11-09; Delhi NCR is the sole launch city. "Brewed Intelligence" survives only as the tagline/heritage line.
 
 ## Original problem statement
 Build a landing page for a new idea: a community for AI and everything in AI in India, starting in Delhi NCR and Hyderabad. Inspired by Pint of View (bar-hosted lectures with drinks) but AI-powered: AI topic categories for speakers, an AI curriculum builder, AI event summaries for attendees, points/leaderboard (daily.dev-style) redeemable on paid certification courses, per-event discussion forums, admin-moderated circles, and an Explore feed of latest AI blogs/events/podcasts. Fun bar-event experience (beer on us) followed by networking. Audience: corporates first, then speakers and members.
@@ -23,6 +25,14 @@ Single-page vision-showcase landing page with a real waitlist capture. No login,
 - Verified: POST /api/waitlist persists (count 2), duplicate returns friendly 409 message; desktop (1440) + mobile (390) screenshots pass; form submit → success state in UI.
 - Pitch deck (14-slide PPTX) and PRD (DOCX) built from the shared ChatGPT research synthesis (chatgpt.com/share/6aef156c + 6aeef8de); served as downloads from /brewed-intelligence-pitch-deck.pptx and /brewed-intelligence-prd.docx; build scripts in /app/scripts/deck/.
 - PDF version of the deck (vector, Fraunces + Manrope embedded) served from /brewed-intelligence-pitch-deck.pdf; verified 200 on localhost and the external preview host; all 14 pages visually checked via contact sheet.
+
+## Rebrand & Delhi NCR focus (2026-11-09)
+- Rebranded everywhere to AI Taproom (aitaproom.club): nav/footer wordmark (with "Brewed Intelligence" tagline line in footer), hero copy, browser title, SEO meta, OG/Twitter cards, canonical/og:url, JSON-LD Organization node, robots.txt/sitemap.xml/llms.txt; backend API greeting. Logo mark (beer-foam + neural nodes) unchanged.
+- Delhi NCR is the only launch city: hero badge, marquee, cities section (one large Delhi card + generic "Your city next?" teaser), meta/description. Hyderabad removed everywhere.
+- Evening timeline reworked to five beats: Doors & first pint (6 PM) → The talk (45 min, moderator-assigned topic) → Live performance (short act; audience submits questions) → Moderator-led Q&A (moderators read submitted questions) → Afters & networking (from 8 PM). No intermediate timestamps.
+- Bento topic card is now "The topics on stage": moderators assign speakers their topic; four upcoming session topics in an expand/collapse accordion (animated height, rotating chevron, one open at a time, amber highlight) with illustrative detail lines.
+- Deck rebuilt as AI Taproom (ai-taproom-pitch-deck.pptx + ai-taproom-pitch-deck.pdf, old files removed): Delhi-only market slide with wide Delhi image + teaser card, aitaproom.club on closing slide/footers, moderator-assigned topic copy. PRD rebuilt as ai-taproom-prd.docx (v1.1: rebrand, Delhi scope, moderator-assigned flow, five-beat evening).
+- Verified end-to-end: waitlist still persists (success state shown), Hyderabad fully absent from rendered page, accordion works desktop + mobile, no horizontal overflow at 390px, head ships AI Taproom + aitaproom.club tags, all six download/SEO files serve 200 on the preview host.
 
 ## Backlog
 - P2: full accounts/auth, Explore feed, points/leaderboard engine, event pages with forums, circles, speaker onboarding + AI curriculum builder (phase 2).

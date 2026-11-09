@@ -52,7 +52,7 @@ export default function Hero() {
             className="inline-flex flex-wrap items-center gap-2 rounded-full border border-brew-amber/30 bg-brew-cream/80 px-4 py-2 text-xs sm:text-sm font-bold text-brew-espresso"
           >
             <MapPin className="h-4 w-4 text-brew-amber" />
-            Coming soon to Delhi NCR & Hyderabad
+            Coming soon to Delhi NCR
           </motion.div>
 
           <h1 className="mt-7 font-display font-semibold tracking-tight text-brew-ink text-5xl sm:text-6xl lg:text-7xl leading-[1.02]">
@@ -83,7 +83,7 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.75 }}
             className="mt-7 max-w-xl text-base sm:text-lg leading-relaxed text-brew-espresso/80"
           >
-            Brewed Intelligence is an AI-powered community for everything in AI —
+            AI Taproom is an AI-powered community for everything in AI —
             real lectures in real bars, the first pint on us, and a platform that
             turns every talk into curricula, summaries, discussions and points.
             Starting with India's corporates.

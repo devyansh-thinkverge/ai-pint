@@ -1,4 +1,4 @@
-"""Builds the Brewed Intelligence 14-slide investor pitch deck (16:9 PPTX)."""
+"""Builds the AI Taproom 14-slide investor pitch deck (16:9 PPTX)."""
 from pptx import Presentation
 from pptx.util import Inches, Pt, Emu
 from pptx.dml.color import RGBColor
@@ -45,7 +45,6 @@ def bg(s, color=FOAM):
 
 
 def text(s, x, y, w, h, runs, align=PP_ALIGN.LEFT, anchor=MSO_ANCHOR.TOP, space_after=6):
-    """runs: list of paragraphs; each paragraph is a list of (text, size, bold, color, font, italic)."""
     tb = s.shapes.add_textbox(x, y, w, h)
     tf = tb.text_frame
     tf.word_wrap = True
@@ -70,12 +69,11 @@ def text(s, x, y, w, h, runs, align=PP_ALIGN.LEFT, anchor=MSO_ANCHOR.TOP, space_
 
 
 def pic_cover(s, path, x, y, w, h, darken=1.0):
-    """Insert picture cropped to fill the box (like object-fit: cover)."""
     im = Image.open(path)
     iw, ih = im.size
     box_ar = w / h
     img_ar = iw / ih
-    if img_ar > box_ar:  # image wider -> crop sides
+    if img_ar > box_ar:
         new_w = int(ih * box_ar)
         left = (iw - new_w) // 2
         im = im.crop((left, 0, left + new_w, ih))
@@ -103,14 +101,13 @@ def head(s, title, x=Inches(0.9), y=Inches(0.95), size=40, color=INK, w=Inches(1
 def footer(s, n, dark=False):
     c = RGBColor(0xA8, 0xA2, 0x9E) if dark else GREY
     text(s, Inches(0.9), Inches(7.02), Inches(6), Inches(0.35),
-         [[("Brewed Intelligence — confidential", 10, False, c, BODY)]], space_after=0)
+         [[("AI Taproom — confidential", 10, False, c, BODY)]], space_after=0)
     text(s, Inches(12.2), Inches(7.02), Inches(0.9), Inches(0.35),
          [[(f"{n:02d}", 10, True, c, BODY)]], align=PP_ALIGN.RIGHT, space_after=0)
 
 
 def chip(s, x, y, w, label, fill=CREAM, fg=ESPRESSO):
     sh = rect(s, x, y, w, Inches(0.42), fill)
-    sh.adjustments  # noqa
     tf = sh.text_frame
     tf.word_wrap = False
     p = tf.paragraphs[0]
@@ -130,19 +127,20 @@ def chip(s, x, y, w, label, fill=CREAM, fg=ESPRESSO):
 s = slide()
 bg(s, INK)
 pic_cover(s, f"{IMG}/bar.jpg", Inches(7.4), 0, Inches(5.93), H, darken=0.62)
-# gradient-ish band: a solid strip
 rect(s, Inches(7.4), Inches(6.7), Inches(5.93), Inches(0.8), ESPRESSO)
 text(s, Inches(7.7), Inches(6.82), Inches(5.4), Inches(0.6),
      [[("One pint. One talk. One idea that sticks.", 15, True, WHITE, DISPLAY, True)]], space_after=0)
-# left panel
-chip(s, Inches(0.9), Inches(1.15), Inches(3.6), "COMING SOON: DELHI NCR & HYDERABAD")
+chip(s, Inches(0.9), Inches(1.15), Inches(2.9), "COMING SOON: DELHI NCR")
 text(s, Inches(0.9), Inches(1.9), Inches(6.2), Inches(3.6),
-     [[("Where India talks AI — over a pint.", 54, True, FOAM, DISPLAY)]], space_after=0)
-text(s, Inches(0.9), Inches(4.35), Inches(5.9), Inches(1.6),
+     [[("Where India", 54, True, FOAM, DISPLAY)],
+      [("talks AI —", 54, True, FOAM, DISPLAY)],
+      [("over a pint.", 54, True, FOAM, DISPLAY)]], space_after=0)
+text(s, Inches(0.9), Inches(4.55), Inches(5.9), Inches(1.6),
      [[("An AI-powered professional community for everything in AI — bar-hosted talks with the first pint on us, and a platform that turns every conversation into curriculum, knowledge and career growth.", 16, False, RGBColor(0xE7, 0xE5, 0xE4), BODY)]])
-text(s, Inches(0.9), Inches(6.1), Inches(5.5), Inches(0.9),
-     [[("Brewed Intelligence", 22, True, AMBER_L, DISPLAY),
-       ("   |   Investor & partner pitch — 2026", 12, False, RGBColor(0xA8, 0xA2, 0x9E), BODY)]], space_after=0)
+text(s, Inches(0.9), Inches(6.0), Inches(5.5), Inches(0.5),
+     [[("AI Taproom", 22, True, AMBER_L, DISPLAY)]], space_after=0)
+text(s, Inches(0.9), Inches(6.42), Inches(5.5), Inches(0.4),
+     [[("Brewed Intelligence  |  Investor & partner pitch — 2026", 11, False, RGBColor(0xA8, 0xA2, 0x9E), BODY)]], space_after=0)
 
 # ---------- 2. PROBLEM ----------
 s = slide()
@@ -204,7 +202,7 @@ for i, (n, t, d, tag, fill, fg) in enumerate(layers):
     xx = Inches(0.9) + i * Inches(3.95)
     card = rect(s, xx, Inches(2.8), Inches(3.7), Inches(3.6), fill)
     text(s, xx + Inches(0.35), Inches(3.05), Inches(3.0), Inches(3.2),
-         [[(n, 15, True, AMBER if fill != CREAM else AMBER, BODY)],
+         [[(n, 15, True, AMBER, BODY)],
           [(t, 24, True, fg, DISPLAY)],
           [(d, 14, False, fg if fill == ESPRESSO else GREY, BODY)]], space_after=10)
     text(s, xx + Inches(0.35), Inches(5.75), Inches(3.0), Inches(0.4),
@@ -218,7 +216,7 @@ eyebrow(s, "The product")
 head(s, "The AI Community OS — six pillars.")
 pillars = [
     ("Experiences", "Curated bar talks, roundtables and networking evenings."),
-    ("AI Copilot", "Speaker topic picker, AI-built curricula, event summaries."),
+    ("AI Copilot", "Moderator-assigned topics, AI-built curricula, event summaries."),
     ("Communities", "Event forums and admin-moderated topic Circles."),
     ("Explore", "Latest AI news, blogs, podcasts and member posts."),
     ("Academy", "Courses, learning paths and certification tracks."),
@@ -254,7 +252,7 @@ for i, (f, t, d) in enumerate(imgs):
          [[(t, 18, True, FOAM, DISPLAY)],
           [(d, 11.5, False, RGBColor(0xD6, 0xD3, 0xD1), BODY)]], space_after=2)
 text(s, Inches(0.9), Inches(6.25), Inches(11.5), Inches(0.5),
-     [[("Every evening ends with an AI-generated knowledge pack in every attendee's inbox — the event keeps working after the stage lights go down.", 13, False, RGBColor(0xD6, 0xD3, 0xD1), BODY, True)]], space_after=0)
+     [[("Doors at 6 PM; the night flows past 8 PM. A live performance beat keeps the room fresh while the audience submits questions the moderators read in Q&A — and an AI knowledge pack lands in every inbox after.", 12.5, False, RGBColor(0xD6, 0xD3, 0xD1), BODY, True)]], space_after=0)
 footer(s, 6, dark=True)
 
 # ---------- 7. FLYWHEEL ----------
@@ -305,7 +303,7 @@ bg(s)
 eyebrow(s, "AI as our differentiator")
 head(s, "The AI layer makes the community useful.")
 feats = [
-    ("Speaker Copilot", "Speakers pick a category — Agentic Security & Governance, AI in Finance, Developer Ecosystem — and AI helps build the talk's curriculum."),
+    ("Speaker Copilot", "Moderators assign each speaker a hot topic — agentic security, AI in finance, the developer ecosystem — and AI helps build the talk's curriculum."),
     ("Event intelligence", "AI summarises every session into takeaways and reading lists, delivered while members network."),
     ("Personalised Explore", "Blogs, events, podcasts and member posts pulled in and ranked around each member's interests."),
     ("Networking & Circles", "Attendee matchmaking and moderated topic circles — e.g. AI Security Posture Management."),
@@ -325,21 +323,24 @@ footer(s, 8)
 # ---------- 9. MARKET & LAUNCH ----------
 s = slide()
 bg(s)
-eyebrow(s, "Launch markets")
-head(s, "Two cities chosen deliberately.")
-pic_cover(s, f"{IMG}/delhi.jpg", Inches(0.9), Inches(2.55), Inches(5.6), Inches(2.6))
-cap = rect(s, Inches(0.9), Inches(4.35), Inches(5.6), Inches(0.8), INK)
-text(s, Inches(1.15), Inches(4.45), Inches(5.1), Inches(0.65),
+eyebrow(s, "Launch market")
+head(s, "Delhi NCR first. The rest follows.")
+pic_cover(s, f"{IMG}/delhi.jpg", Inches(0.9), Inches(2.35), Inches(7.1), Inches(3.5), darken=0.85)
+cap = rect(s, Inches(0.9), Inches(4.95), Inches(7.1), Inches(0.9), INK)
+text(s, Inches(1.15), Inches(5.05), Inches(6.6), Inches(0.75),
      [[("Delhi NCR — enterprise & governance", 16, True, FOAM, DISPLAY)],
       [("BFSI, cybersecurity, consulting, corporate roundtables", 11, False, RGBColor(0xD6, 0xD3, 0xD1), BODY)]], space_after=1)
-pic_cover(s, f"{IMG}/hyderabad.jpg", Inches(6.83), Inches(2.55), Inches(5.6), Inches(2.6))
-cap2 = rect(s, Inches(6.83), Inches(4.35), Inches(5.6), Inches(0.8), INK)
-text(s, Inches(7.08), Inches(4.45), Inches(5.1), Inches(0.65),
-     [[("Hyderabad — GCCs & applied AI", 16, True, FOAM, DISPLAY)],
-      [("HITEC City engineers, global capability centres, healthcare AI", 11, False, RGBColor(0xD6, 0xD3, 0xD1), BODY)]], space_after=1)
-text(s, Inches(0.9), Inches(5.55), Inches(11.5), Inches(1.2),
+teaser = rect(s, Inches(8.3), Inches(2.35), Inches(4.13), Inches(3.5), CREAM)
+teaser.line.color.rgb = AMBER
+teaser.line.width = Pt(1.5)
+text(s, Inches(8.6), Inches(2.65), Inches(3.55), Inches(2.9),
+     [[("Your city next?", 22, True, INK, DISPLAY)],
+      [("More Indian cities are on the roadmap. The waitlist decides where we pour next.", 12.5, False, GREY, BODY)]], space_after=8)
+text(s, Inches(8.6), Inches(5.3), Inches(3.55), Inches(0.5),
+     [[("aitaproom.club", 13, True, AMBER, BODY)]], space_after=0)
+text(s, Inches(0.9), Inches(6.15), Inches(11.5), Inches(0.9),
      [[("First 90 days (proposed operating targets):  ", 13, True, INK, BODY),
-       ("recruit 15–20 founding speakers, sign 3–5 corporate partners, launch recurring events in both cities, open six topic Circles, and onboard a curated Founding 100 per city.", 13, False, GREY, BODY)]], space_after=0)
+       ("recruit 15–20 founding speakers, sign 3–5 corporate partners, launch recurring events in Delhi NCR, open six topic Circles, and onboard a curated Founding 100.", 13, False, GREY, BODY)]], space_after=0)
 footer(s, 9)
 
 # ---------- 10. COMPETITION ----------
@@ -402,9 +403,9 @@ bg(s)
 eyebrow(s, "Roadmap")
 head(s, "Disciplined in three phases.")
 phases = [
-    ("Phase 1 · Months 0–3", "Community foundation", "Waitlist & registration, city events, speaker copilot, event forums, six Circles, Explore feed, basic XP & leaderboard. Landing page and waitlist are live today.", "Prove members attend, return and build relationships."),
+    ("Phase 1 · Months 0–3", "Community foundation", "Waitlist & registration, city events, moderator-assigned topics with the speaker copilot, event forums, six Circles, Explore feed, basic XP & leaderboard. Landing page and waitlist are live today.", "Prove members attend, return and build relationships."),
     ("Phase 2 · Months 3–6", "Always-on platform", "AI knowledge packs, personalised Explore, AI networking, member publishing, rewards marketplace, paid courses, corporate memberships & private Circles.", "Grow retention, paid conversion and corporate revenue."),
-    ("Phase 3 · Months 6–12+", "The ecosystem", "Enterprise learning, expert directory, research reports, partner certifications, new city chapters (Bangalore, Mumbai), national conference.", "Repeatable city economics and recurring enterprise contracts."),
+    ("Phase 3 · Months 6–12+", "The ecosystem", "Enterprise learning, expert directory, research reports, partner certifications, new city chapters, national conference.", "Repeatable city economics and recurring enterprise contracts."),
 ]
 for i, (ph, t, d, crit) in enumerate(phases):
     xx = Inches(0.9) + i * Inches(3.95)
@@ -462,9 +463,9 @@ for i, (t, d) in enumerate(asks):
          [[(t.upper(), 13, True, AMBER_L, BODY)],
           [(d, 11.5, False, WHITE, BODY)]], space_after=3)
 text(s, Inches(0.9), Inches(6.95), Inches(11.5), Inches(0.4),
-     [[("brewedintelligence.com · Delhi NCR & Hyderabad · Join the waitlist today", 12, True, RGBColor(0xF6, 0xF2, 0xEE), BODY)]], space_after=0)
+     [[("aitaproom.club · Delhi NCR · Join the waitlist today", 12, True, RGBColor(0xF6, 0xF2, 0xEE), BODY)]], space_after=0)
 
-out = "/app/frontend/public/brewed-intelligence-pitch-deck.pptx"
+out = "/app/frontend/public/ai-taproom-pitch-deck.pptx"
 os.makedirs(os.path.dirname(out), exist_ok=True)
 prs.save(out)
 print("saved", out)

@@ -11,8 +11,13 @@ export default function Footer() {
   return (
     <footer className="border-t border-brew-espresso/10 bg-brew-foam py-12">
       <div className="mx-auto flex max-w-7xl flex-col items-center gap-8 px-5 sm:px-8 md:flex-row md:justify-between">
-        <a href="#top" onClick={(e) => e.preventDefault()} aria-label="Brewed Intelligence">
-          <Logo className="h-8 w-8" textClass="text-base" />
+        <a href="#top" onClick={(e) => e.preventDefault()} aria-label="AI Taproom">
+          <Logo
+            className="h-8 w-8"
+            textClass="text-base"
+            tagline="Brewed Intelligence"
+            taglineClass="text-[8px]"
+          />
         </a>
 
         <div className="flex items-center gap-4">
@@ -30,12 +35,13 @@ export default function Footer() {
         </div>
 
         <p className="text-sm text-brew-espresso/60">
-          © {new Date().getFullYear()} Brewed Intelligence · Delhi NCR & Hyderabad
+          © {new Date().getFullYear()} AI Taproom · Delhi NCR
         </p>
       </div>
       <p className="mx-auto mt-8 max-w-7xl px-5 text-xs text-brew-espresso/40 sm:px-8">
-        Brewed Intelligence is a community platform for everything AI in India. Drink
-        responsibly — attendees must be of legal drinking age at venue events.
+        AI Taproom is a community platform for everything AI in India — brewed as
+        Brewed Intelligence. Drink responsibly — attendees must be of legal drinking
+        age at venue events.
       </p>
     </footer>
   );

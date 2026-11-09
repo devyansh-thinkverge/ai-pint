@@ -4,7 +4,6 @@ const ITEMS = [
   "Agentic Security",
   "Delhi NCR",
   "AI in Finance",
-  "Hyderabad",
   "Developer Ecosystem",
   "Governance",
   "AI in Industries",

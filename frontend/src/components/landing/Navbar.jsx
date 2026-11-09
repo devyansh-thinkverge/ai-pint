@@ -38,7 +38,7 @@ export default function Navbar() {
           href="#top"
           data-testid="nav-logo-link"
           onClick={(e) => go(e, "#top")}
-          aria-label="Brewed Intelligence home"
+          aria-label="AI Taproom home"
         >
           <Logo className="h-9 w-9" textClass="text-lg" />
         </a>

@@ -1,4 +1,9 @@
-export default function Logo({ className = "h-9 w-9", textClass = "" }) {
+export default function Logo({
+  className = "h-9 w-9",
+  textClass = "",
+  tagline = null,
+  taglineClass = "",
+}) {
   return (
     <span className="flex items-center gap-2.5">
       <svg viewBox="0 0 64 64" className={className} aria-hidden="true">
@@ -23,10 +28,19 @@ export default function Logo({ className = "h-9 w-9", textClass = "" }) {
         <circle cx="37" cy="16.5" r="1.5" fill="#D97706" />
         <circle cx="45" cy="16.5" r="1.5" fill="#D97706" />
       </svg>
-      <span
-        className={`font-display font-semibold tracking-tight text-brew-ink ${textClass}`}
-      >
-        Brewed<span className="text-brew-amber"> Intelligence</span>
+      <span className="flex flex-col leading-none">
+        <span
+          className={`font-display font-semibold tracking-tight text-brew-ink ${textClass}`}
+        >
+          AI <span className="text-brew-amber">Taproom</span>
+        </span>
+        {tagline && (
+          <span
+            className={`mt-1 text-[10px] font-bold uppercase tracking-[0.18em] text-brew-espresso/60 ${taglineClass}`}
+          >
+            {tagline}
+          </span>
+        )}
       </span>
     </span>
   );

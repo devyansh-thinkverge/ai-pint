@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   LayoutGrid,
   Wand2,
@@ -10,13 +11,30 @@ import {
   GraduationCap,
   ArrowUpRight,
   Flame,
+  ChevronDown,
 } from "lucide-react";
 
-const CATEGORIES = [
-  "Agentic Security & Governance",
-  "AI in Industries",
-  "AI in Finance",
-  "AI in the Developer Ecosystem",
+const TOPICS = [
+  {
+    title: "Agentic Security & Governance",
+    detail:
+      "How teams keep autonomous agents in check — posture, guardrails, policy and the questions every board is starting to ask.",
+  },
+  {
+    title: "AI in Industries",
+    detail:
+      "Field notes from factories, hospitals, retail chains and farms — what actually works when AI meets the physical world.",
+  },
+  {
+    title: "AI in Finance",
+    detail:
+      "Fraud, risk, underwriting and the algorithms moving money — a candid look at AI on the trading floor and behind the counter.",
+  },
+  {
+    title: "AI in the Developer Ecosystem",
+    detail:
+      "Coding agents, RAG, MCP and the AI-powered tools changing how software gets written — for the people writing it.",
+  },
 ];
 
 const reveal = {
@@ -57,6 +75,7 @@ function CardHead({ icon: Icon, title }) {
 }
 
 export default function Bento() {
+  const [openTopic, setOpenTopic] = useState(null);
   return (
     <section id="platform" className="relative py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
@@ -80,23 +99,59 @@ export default function Bento() {
         </motion.div>
 
         <div className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-3">
-          {/* Categories — tall */}
-          <Card i={0} className="md:row-span-2 flex flex-col">
-            <CardHead icon={LayoutGrid} title="Pick your AI topic" />
+          {/* Topics accordion — tall */}
+          <Card i={0} className="md:row-span-2 flex flex-col" >
+            <CardHead icon={LayoutGrid} title="The topics on stage" />
             <p className="mt-3 text-sm sm:text-base leading-relaxed text-brew-espresso/80">
-              Speakers choose from curated AI categories, each with a living map
-              of what the community wants to hear next.
+              Moderators assign each speaker their topic, tuned to what the
+              community wants to hear next. Tap a session to see what it covers.
             </p>
-            <ul className="mt-6 space-y-3">
-              {CATEGORIES.map((c) => (
-                <li
-                  key={c}
-                  className="flex items-center justify-between rounded-2xl border border-brew-espresso/10 bg-brew-foam px-4 py-3 text-sm font-semibold text-brew-ink transition-colors hover:border-brew-amber/50 hover:bg-brew-cream/50"
-                >
-                  {c}
-                  <ArrowUpRight className="h-4 w-4 text-brew-amber" />
-                </li>
-              ))}
+            <ul className="mt-6 space-y-3" data-testid="topics-accordion">
+              {TOPICS.map((topic, i) => {
+                const open = openTopic === i;
+                return (
+                  <li
+                    key={topic.title}
+                    className={`rounded-2xl border transition-colors ${
+                      open
+                        ? "border-brew-amber/60 bg-brew-cream/50"
+                        : "border-brew-espresso/10 bg-brew-foam hover:border-brew-amber/40"
+                    }`}
+                  >
+                    <button
+                      type="button"
+                      data-testid={`topic-toggle-${i}`}
+                      aria-expanded={open}
+                      onClick={() => setOpenTopic(open ? null : i)}
+                      className="flex w-full items-center justify-between gap-3 px-4 py-3 text-left text-sm font-semibold text-brew-ink"
+                    >
+                      {topic.title}
+                      <motion.span
+                        animate={{ rotate: open ? 180 : 0 }}
+                        transition={{ duration: 0.25 }}
+                        className="shrink-0"
+                      >
+                        <ChevronDown className="h-4 w-4 text-brew-amber" />
+                      </motion.span>
+                    </button>
+                    <AnimatePresence initial={false}>
+                      {open && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+                          className="overflow-hidden"
+                        >
+                          <p className="px-4 pb-3 text-xs leading-relaxed text-brew-espresso/80">
+                            {topic.detail}
+                          </p>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </li>
+                );
+              })}
               <li className="px-4 text-xs font-bold uppercase tracking-widest text-brew-espresso/50">
                 + more categories at launch
               </li>

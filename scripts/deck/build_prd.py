@@ -1,7 +1,6 @@
-"""Builds the Brewed Intelligence PRD (DOCX) from the shared research document."""
+"""Builds the AI Taproom PRD (DOCX) from the shared research document."""
 from docx import Document
 from docx.shared import Pt, Inches, RGBColor
-from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.enum.table import WD_TABLE_ALIGNMENT
 from docx.oxml.ns import qn
 from docx.oxml import OxmlElement
@@ -12,7 +11,6 @@ GREY = RGBColor(0x57, 0x53, 0x4E)
 
 doc = Document()
 
-# base style
 style = doc.styles["Normal"]
 style.font.name = "Calibri"
 style.font.size = Pt(10.5)
@@ -76,14 +74,6 @@ def bullets(items):
             r.font.size = Pt(10.5)
 
 
-def numbered(items):
-    for it in items:
-        p = doc.add_paragraph(style="List Number")
-        r = p.add_run(it)
-        r.font.size = Pt(10.5)
-        p.paragraph_format.space_after = Pt(2)
-
-
 def table(headers, rows, widths=None, header_fill="78350F"):
     t = doc.add_table(rows=1, cols=len(headers))
     t.style = "Table Grid"
@@ -116,28 +106,29 @@ def table(headers, rows, widths=None, header_fill="78350F"):
 # ---------- COVER ----------
 para("PRODUCT REQUIREMENTS DOCUMENT", bold=True, size=12, color=AMBER, space_after=2)
 p = doc.add_paragraph()
-r = p.add_run("Brewed Intelligence")
+r = p.add_run("AI Taproom")
 r.font.name = "Georgia"
 r.font.size = Pt(34)
 r.bold = True
 p2 = doc.add_paragraph()
-r2 = p2.add_run("Where India talks AI — over a pint.")
+r2 = p2.add_run("Where India talks AI — over a pint.  (Brewed as Brewed Intelligence.)")
 r2.font.name = "Georgia"
-r2.font.size = Pt(15)
+r2.font.size = Pt(14)
 r2.italic = True
 r2.font.color.rgb = GREY
-para("An AI-powered professional community platform for everything in AI, starting in Delhi NCR and Hyderabad. "
-     "Bar-hosted expert talks (first pint on us) plus an always-on platform: AI-built talk curricula, event knowledge "
-     "packs, discussion forums, moderated Circles, an Explore feed, and a points-and-leaderboard economy redeemable "
-     "against paid certification courses.", space_after=10)
+para("An AI-powered professional community platform for everything in AI, launching in Delhi NCR. "
+     "Bar-hosted expert talks (first pint on us) plus an always-on platform: moderator-assigned topics with "
+     "AI-built curricula, event knowledge packs, discussion forums, moderated Circles, an Explore feed, and a "
+     "points-and-leaderboard economy redeemable against paid certification courses.", space_after=10)
 meta = table(
     ["Field", "Value"],
     [
-        ["Product", "Brewed Intelligence — AI Community OS"],
-        ["Document version", "v1.0 — November 2026"],
+        ["Product", "AI Taproom — AI Community OS (brewed as Brewed Intelligence)"],
+        ["Domain", "aitaproom.club"],
+        ["Document version", "v1.1 — November 2026 (AI Taproom rebrand; Delhi NCR launch focus)"],
         ["Owner", "Founding team"],
         ["Status", "Landing page live with working waitlist; platform in Phase 1 planning"],
-        ["Source basis", "Research synthesis (market scan, competitor analysis, product strategy) of Pint of View, daily.dev and India AI community landscape"],
+        ["Source basis", "Research synthesis (market scan, competitor analysis, product strategy) of Pint of View, daily.dev and the India AI community landscape"],
     ],
     widths=[1.6, 5.0],
 )
@@ -147,9 +138,9 @@ h1("1. Vision and strategy")
 para("The long-term ambition is to become India's professional network and knowledge ecosystem for Artificial Intelligence — "
      "not an event company, and not another meetup group. The business has three distinct layers:")
 bullets([
-    ("Layer 1 — Community acquisition: the experiences", "events, bars, expert speakers, networking, workshops and city chapters. This is how people discover us."),
+    ("Layer 1 — Community acquisition: the experiences", "events, bars, expert speakers, networking, workshops and future city chapters. This is how people discover us."),
     ("Layer 2 — Retention and engagement: the platform", "Explore, AI Circles, forums, XP, rewards, AI knowledge and member publishing. This is why people stay."),
-    ("Layer 3 — Monetisation: the professional ecosystem", "corporate memberships, enterprise communities, courses, certifications, workshops and sponsorships. This is how the business scales."),
+    ("Layer 3 — Monetisation: the ecosystem", "corporate memberships, enterprise communities, courses, certifications, workshops and sponsorships. This is how the business scales."),
 ])
 para("Core product principle: an event should not end when the speaker leaves the stage. Every event creates a continuing "
      "digital experience — knowledge pack, forum, Circle, connections and points — turning one-time attendees into active members.")
@@ -172,16 +163,16 @@ para("Competitive landscape: the concept sits between existing categories — Pi
      "Indian AI Community, Indian Data Club (city chapters, challenges) and Meetup (local discovery). We do not claim to be "
      "India's first AI community; the differentiation is the integrated combination of AI-assisted event creation, corporate-first "
      "practitioner-led communities, an always-on content ecosystem and a unified reputation-and-rewards system.")
-para("Launch markets. Delhi NCR (Gurugram, Noida, New Delhi): enterprise technology and consulting leaders, BFSI, cybersecurity, "
-     "AI governance, corporate-sponsored executive sessions. Hyderabad (HITEC City, Madhapur, Gachibowli): Global Capability Centres, "
-     "AI/ML engineers, enterprise technology teams, healthcare and life sciences, agentic AI and developer tooling.", space_after=10)
+para("Launch market. Delhi NCR is the sole confirmed launch city (enterprise technology and consulting leaders, BFSI, "
+     "cybersecurity, AI governance, corporate-sponsored executive sessions). Other Indian cities are on the roadmap but are "
+     "not named as committed; the waitlist captures demand for where to pour next.", space_after=10)
 
 h1("3. User personas")
 table(
     ["Persona", "Who they are", "What they need"],
     [
-        ["The corporate learner (primary)", "L&D leaders, managers and professionals in GCCs, IT services, BFSI and enterprise software", "Engaging, high-signal AI learning and networking for their teams; practical insight from practitioners, not keynotes"],
-        ["The speaker", "Verified AI practitioners and experts willing to host a session", "A structured topic taxonomy, AI help building the curriculum, and a room that is actually fun to present to"],
+        ["The corporate learner (primary)", "L&D leaders, managers and professionals in GCCs, IT services, BFSI and enterprise software in Delhi NCR", "Engaging, high-signal AI learning and networking for their teams; practical insight from practitioners, not keynotes"],
+        ["The speaker", "Verified AI practitioners and experts willing to host a session", "A topic assigned by our moderators, AI help building the curriculum, and a room that is actually fun to present to"],
         ["The member", "AI-curious engineers, founders, analysts and students", "A place to discover what matters in AI, meet peers, be seen contributing, and earn recognition"],
         ["The sponsor / corporate partner", "Technology vendors, banks, GCCs, consulting firms", "Credible, labelled access to a curated AI audience; branded series, private Circles, workshops"],
     ],
@@ -192,8 +183,8 @@ h1("4. Product pillars and functional scope")
 table(
     ["Pillar", "What it includes", "Phase"],
     [
-        ["Experiences", "City events, bar-hosted talks, workshops, roundtables, networking evenings, ticketing", "1"],
-        ["AI Copilot", "Speaker topic taxonomy (Agentic AI; AI Security & Governance; AI in Enterprise, Finance, Healthcare; AI for Developers; Infrastructure; Generative AI; Research; AI Product & Startups), AI-generated event curricula, post-event summarisation, personalised recommendations", "1–2"],
+        ["Experiences", "Bar-hosted evening events (6 PM doors, flowing past 8 PM), roundtables, workshops, ticketing. Five-beat format: doors & first pint → the talk (45 minutes) → live performance (audience submits questions for the speaker or panelists) → moderator-led Q&A (moderators read the submitted questions towards the end) → afters & networking (from 8 PM)", "1"],
+        ["AI Copilot", "Topic taxonomy assigned by moderators per speaker (Agentic AI; AI Security & Governance; AI in Enterprise, Finance, Healthcare; AI for Developers; Infrastructure; Generative AI; Research; AI Product & Startups), AI-generated event curricula, post-event summarisation, personalised recommendations", "1–2"],
         ["Communities", "Per-event discussion forums, admin-moderated Circles (six at launch), private corporate Circles, networking", "1–2"],
         ["Explore", "Automated pull of AI blogs, news, research, podcasts, videos; member posts; personalised feed", "1–2"],
         ["Academy", "Paid courses, learning paths, assessments, certification tracks (points-redeemable)", "2–3"],
@@ -206,8 +197,8 @@ h1("5. Roadmap")
 h2("Phase 1 — Community foundation (months 0–3) — foundation live")
 bullets([
     "Landing page with waitlist capture (email + role: corporate / speaker / member) — SHIPPED, submissions persist to database",
-    "Member registration and profiles; city-based event discovery; event registration and ticketing",
-    "Speaker profiles and event submissions; basic AI Event Copilot; event-specific forums",
+    "Member registration and profiles; Delhi NCR event discovery; event registration and ticketing",
+    "Speaker profiles with moderator-assigned topics; AI Event Copilot; event-specific forums",
     "Six initial AI Circles with moderators; Explore feed with curated content; basic XP and leaderboard",
     "Event check-in and feedback; admin and moderation dashboard",
 ])
@@ -223,7 +214,7 @@ h2("Phase 3 — Scale (months 6–12+)")
 bullets([
     "Enterprise learning management; advanced AI knowledge assistant; corporate AI adoption communities",
     "Industry research reports; AI talent and expert discovery; partner certification programmes",
-    "Additional city chapters (Bangalore, Mumbai and beyond); mobile apps; national AI community conference",
+    "Additional city chapters beyond Delhi NCR; mobile apps; national AI community conference",
 ])
 para("Success criteria: repeatable city economics, recurring enterprise contracts, defensible knowledge network.", italic=True, color=GREY)
 h2("Deliberately out of scope for the MVP")
@@ -238,13 +229,13 @@ table(
     ["Period", "Execution (proposed operating targets)"],
     [
         ["Days 1–30", "Recruit 15–20 founding speakers and experts; sign 3–5 corporate partners; identify venues; recruit city ambassadors"],
-        ["Days 31–60", "Launch first events in both cities; onboard founding members; open initial topic Circles"],
+        ["Days 31–60", "Launch first events in Delhi NCR; onboard founding members; open initial topic Circles"],
         ["Days 61–90", "Establish recurring events; publish event knowledge packs; activate Explore; introduce XP challenges"],
     ],
     widths=[1.1, 5.5],
 )
 bullets([
-    ("Founding 100", "curated founding membership per launch city — founding badge, early event access, priority Q&A, private roundtables, moderator opportunities. Curated for diversity of expertise, not job titles."),
+    ("Founding 100", "curated founding membership for the launch city — founding badge, early event access, priority Q&A, private roundtables, moderator opportunities. Curated for diversity of expertise, not job titles."),
     ("Corporate acquisition", "GCCs, IT services, banks and financial institutions, cybersecurity firms, enterprise software, AI startups, consulting firms — with concrete proposals: sponsor a knowledge series, own a private Circle, or buy an employee learning programme."),
     ("Partnerships", "AI model and cloud providers, technology and cybersecurity companies, universities, developer communities, coworking spaces and bars, learning providers, professional associations. No company is implied as a partner until an agreement is signed."),
 ])
@@ -272,7 +263,7 @@ table(
 )
 para("First six-month validation targets (for validating the model — not forecasts): 1,000 registered members; 300 monthly "
      "active members; 5 corporate partners; 24 events hosted; 35–50 average attendance per event; 6 active Circles; 30% repeat "
-     "event attendance; 100 member contributions per month. Event profitability is measured independently per city.", space_after=10)
+     "event attendance; 100 member contributions per month. Event profitability is measured independently per venue.", space_after=10)
 
 h1("9. Risks and mitigations")
 table(
@@ -280,9 +271,9 @@ table(
     [
         ["Cold start: empty forums look worse than a WhatsApp group", "Start with a handful of active Circles, seed discussions, assign real moderators"],
         ["Content quality: generic AI news has no moat", "Expert commentary, practical enterprise insight, original member contributions, quality curation"],
-        ["Speaker quality defines the brand", "Speaker verification, editorial review, post-event feedback"],
+        ["Speaker quality defines the brand", "Moderator-assigned topics, speaker verification, editorial review, post-event feedback"],
         ["Points inflation leads to spam", "Keep XP, reputation and redeemable credits separate; cap trivial interactions"],
-        ["Event economics vary by city", "Model venue, drinks, speakers, tickets and sponsorship separately for Delhi NCR and Hyderabad"],
+        ["Event economics", "Model venue, drinks, speakers, tickets and sponsorship per venue in Delhi NCR; model future cities separately before launch"],
         ["Data privacy and AI consent", "Design for DPDP Rules 2025 (notified November 2025): transparent collection, purpose limitation, consent, security, user rights; legal review of obligations"],
         ["Corporate confidentiality", "Private Circles need access controls, moderation, confidentiality settings; clean separation from public content"],
         ["Trust in certifications", "Verify instructors and partners; distinguish completion certificates from accredited qualifications"],
@@ -304,17 +295,18 @@ table(
 
 h1("11. What's already built")
 bullets([
-    "Landing page (React, Tailwind, Framer Motion, Lenis) with kinetic hero, concept story, event-evening timeline, feature bento, topics marquee, launch-city cards and footer — live in preview",
+    "Landing page (React, Tailwind, Framer Motion, Lenis) branded AI Taproom: kinetic hero, concept story, five-beat evening timeline (6 PM doors, live-performance question collection, moderator-led Q&A, from 8 PM networking), feature bento with an expandable topics accordion, topics marquee, Delhi NCR launch card with next-city teaser, and footer — live in preview",
     "Working waitlist API (FastAPI + MongoDB): email + role capture, duplicate detection, count endpoint — verified end-to-end",
-    "Custom SVG brand mark (beer-foam / neural-node), favicon, SEO and social-share meta tags",
-    "This PRD and the 14-slide investor pitch deck (both attached to this delivery)",
+    "Custom SVG brand mark (beer-foam / neural-node) kept from Brewed Intelligence; favicon, SEO meta, canonical aitaproom.club, robots.txt, sitemap.xml and llms.txt",
+    "Investor pitch deck (14-slide PPTX + matching PDF) and this PRD, updated for the AI Taproom brand and Delhi NCR launch scope",
 ])
 
 doc.add_paragraph()
 para("Prepared from the shared research synthesis (chatgpt.com/share/6aef156c) and the earlier concept document "
      "(chatgpt.com/share/6aeef8de). Market figures are survey findings from PIB (Feb 2026) and Deloitte (Mar 2026) as cited "
-     "in the research; revalidate before formal investor use.", italic=True, size=9, color=GREY)
+     "in the research; revalidate before formal investor use. v1.1: rebranded to AI Taproom (aitaproom.club), Delhi NCR-only "
+     "launch scope, moderator-assigned topic flow and the five-beat event-evening format.", italic=True, size=9, color=GREY)
 
-out = "/app/frontend/public/brewed-intelligence-prd.docx"
+out = "/app/frontend/public/ai-taproom-prd.docx"
 doc.save(out)
 print("saved", out)

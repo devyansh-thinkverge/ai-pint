@@ -1,0 +1,8 @@
+# AI Taproom
+
+AI Taproom (brewed as Brewed Intelligence) is an AI-powered community platform for everything in AI in India, launching first in Delhi NCR.
+
+- Format: curated expert talks hosted in bars — the first pint is on us — followed by networking. Evenings start at 6 PM and flow past 8 PM, with a live-performance beat where the audience submits questions that session moderators read during a moderator-led Q&A.
+- Platform features: AI-built talk curricula for speakers (topics assigned by moderators from categories such as Agentic Security & Governance, AI in Industries, AI in Finance and AI in the Developer Ecosystem), AI event summaries for attendees, per-event discussion forums, admin-moderated Circles, an Explore feed of the latest AI blogs, events and podcasts, points with streaks and a leaderboard, and subscribable certification courses that points can be redeemed against.
+- Audience: corporate teams first, then speakers and the wider AI-curious community.
+- Status: the landing page and waitlist are live; the full platform is in development.
