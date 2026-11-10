@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Beer, MessagesSquare, Users } from "lucide-react";
+import { Beer, MessagesSquare, Music, Users } from "lucide-react";
 
 const LECTURE_IMG =
   "https://images.unsplash.com/photo-1772690445981-78b22eacda4b?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2ODh8MHwxfHNlYXJjaHwzfHxuZXR3b3JraW5nJTIwZXZlbnR8ZW58MHx8fHwxNzk0MDQ2NTg0fDA&ixlib=rb-4.1.0&q=85";
@@ -116,6 +116,34 @@ export default function Concept() {
             </div>
           </div>
         </div>
+
+        {/* Live performance — sitar act */}
+        <motion.figure
+          variants={reveal}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.15 }}
+          data-testid="concept-performance"
+          className="group relative mt-6 sm:mt-8 overflow-hidden rounded-3xl"
+        >
+          <img
+            src="https://static.prod-images.emergentagent.com/jobs/751b1243-e4c7-4f7a-bd4d-84ab3a2cb8f6/images/56229934d8b6a54673936c988787c4c11a6cca035b0cf7f48424d6e61dea409e.jpeg"
+            alt="A sitar artist performing live on the taproom stage"
+            className="h-64 sm:h-80 w-full object-cover transition-transform duration-700 group-hover:scale-105"
+            loading="lazy"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-brew-ink/75 via-brew-ink/15 to-transparent" />
+          <figcaption className="absolute bottom-5 left-5 flex items-center gap-3">
+            <Music className="h-6 w-6 text-brew-cream" />
+            <div>
+              <p className="font-display text-xl sm:text-2xl text-white">The performance</p>
+              <p className="text-sm text-white/85 max-w-[52ch]">
+                A live sitar act between beats — while the room unwinds, your
+                questions for the speaker roll in.
+              </p>
+            </div>
+          </figcaption>
+        </motion.figure>
       </div>
     </section>
   );
