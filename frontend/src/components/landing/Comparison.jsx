@@ -53,7 +53,7 @@ export default function Comparison() {
           className="max-w-2xl"
         >
           <p className="text-xs font-extrabold uppercase tracking-[0.25em] text-brew-amber">
-            Why we're different
+            How we're different
           </p>
           <h2 className="mt-4 font-display font-semibold tracking-tight text-brew-ink text-3xl sm:text-4xl lg:text-5xl leading-tight">
             Not a conference. Not a meetup. A taproom.
