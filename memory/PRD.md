@@ -33,7 +33,7 @@ Single-page vision-showcase landing page with a real waitlist capture. No login,
 - Bento topic card is now "The topics on stage": moderators assign speakers their topic; four upcoming session topics in an expand/collapse accordion (animated height, rotating chevron, one open at a time, amber highlight) with illustrative detail lines.
 - Deck rebuilt as AI Taproom (ai-taproom-pitch-deck.pptx + ai-taproom-pitch-deck.pdf, old files removed): Delhi-only market slide with wide Delhi image + teaser card, aitaproom.club on closing slide/footers, moderator-assigned topic copy. PRD rebuilt as ai-taproom-prd.docx (v1.1: rebrand, Delhi scope, moderator-assigned flow, five-beat evening).
 - Verified end-to-end: waitlist still persists (success state shown), Hyderabad fully absent from rendered page, accordion works desktop + mobile, no horizontal overflow at 390px, head ships AI Taproom + aitaproom.club tags, all six download/SEO files serve 200 on the preview host.
-- Concept ("The idea") section gained a full-width live-performance figure (generated sitar-artist-on-stage image, amber bar aesthetic) captioned "The performance" tying to the evening's question-collection beat (2026-11-10).
+- Concept ("The idea") section gained a full-width live-performance figure (generated image of a young woman playing sitar in a modern bar, amber aesthetic) captioned "The performance" tying to the evening's question-collection beat (2026-11-10; artwork swapped to the woman-artist version the same day per user request).
 
 ## Backlog
 - P2: full accounts/auth, Explore feed, points/leaderboard engine, event pages with forums, circles, speaker onboarding + AI curriculum builder (phase 2).

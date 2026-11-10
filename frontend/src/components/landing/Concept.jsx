@@ -127,8 +127,8 @@ export default function Concept() {
           className="group relative mt-6 sm:mt-8 overflow-hidden rounded-3xl"
         >
           <img
-            src="https://static.prod-images.emergentagent.com/jobs/751b1243-e4c7-4f7a-bd4d-84ab3a2cb8f6/images/56229934d8b6a54673936c988787c4c11a6cca035b0cf7f48424d6e61dea409e.jpeg"
-            alt="A sitar artist performing live on the taproom stage"
+            src="https://static.prod-images.emergentagent.com/jobs/751b1243-e4c7-4f7a-bd4d-84ab3a2cb8f6/images/1ee9dd75dbb46314f00abef52ec4444ed591257992178d50125e711373a7040c.jpeg"
+            alt="A young sitar artist performing live on the taproom stage"
             className="h-64 sm:h-80 w-full object-cover transition-transform duration-700 group-hover:scale-105"
             loading="lazy"
           />
