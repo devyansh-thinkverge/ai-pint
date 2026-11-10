@@ -39,19 +39,10 @@ const ITINERARY = [
   },
 ];
 
-const WORKSHOP_THEMES = [
-  "Agentic security",
-  "Compliance & governance",
-  "Building AI agent frameworks",
-  "RAG & pipelines",
-  "Prompt systems",
-  "AI in finance ops",
-];
-
 const PERKS = [
-  { icon: CalendarCheck, text: "A fixed number of retreats every year, included with Reserve membership" },
+  { icon: CalendarCheck, text: "A fixed number of retreats every year, included with Taproom retreats membership" },
   { icon: Trophy, text: "Points redeemable on seats and upgrades" },
-  { icon: Sparkles, text: "Exclusive Reserve-only events and evenings" },
+  { icon: Sparkles, text: "Exclusive members-only events and evenings" },
 ];
 
 const DESTINATIONS = {
@@ -80,7 +71,7 @@ export default function Retreats() {
           viewport={{ once: true, amount: 0.15 }}
         >
           <p className="text-xs font-extrabold uppercase tracking-[0.25em] text-amber-400">
-            Taproom Reserve
+            Taproom retreats
           </p>
           <h2 className="mt-4 font-display font-semibold tracking-tight text-3xl sm:text-4xl lg:text-5xl leading-tight">
             Retreats that go deeper.
@@ -88,7 +79,7 @@ export default function Retreats() {
           <p className="mt-5 text-base sm:text-lg leading-relaxed text-brew-foam/80">
             Premium members join every taproom evening — and a{" "}
             <span className="font-bold text-amber-400">fixed number of retreats</span>{" "}
-            every year, included with Taproom Reserve membership. Short getaways or longer
+            every year, included with Taproom retreats membership. Short getaways or longer
             immersions, the format stretches into serious learning with the
             people building India's AI.
           </p>
@@ -114,23 +105,6 @@ export default function Retreats() {
                 </div>
               </div>
             ))}
-          </div>
-
-          {/* workshop themes */}
-          <div className="mt-8" data-testid="retreat-workshop-themes">
-            <p className="text-xs font-extrabold uppercase tracking-[0.25em] text-amber-400">
-              Workshop themes — taught live from experts
-            </p>
-            <div className="mt-3 flex flex-wrap gap-2.5">
-              {WORKSHOP_THEMES.map((t) => (
-                <span
-                  key={t}
-                  className="rounded-full border border-amber-400/40 bg-white/5 px-4 py-2 text-sm font-bold text-amber-300"
-                >
-                  {t}
-                </span>
-              ))}
-            </div>
           </div>
 
           {/* perks */}
@@ -185,7 +159,7 @@ export default function Retreats() {
             }}
             className="group mt-9 inline-flex items-center gap-2 rounded-full bg-amber-400 px-7 py-3.5 text-sm font-extrabold text-brew-ink transition-all hover:bg-amber-300 hover:shadow-xl hover:shadow-amber-400/25 hover:-translate-y-0.5"
           >
-            Join the waitlist — Taproom Reserve
+            Join the waitlist — Taproom retreats
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
           </a>
         </motion.div>
@@ -206,7 +180,7 @@ export default function Retreats() {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-brew-espresso/90 via-brew-espresso/10 to-transparent" />
           <span className="absolute top-4 right-4 rounded-full bg-amber-400 px-3.5 py-1.5 text-[11px] font-extrabold uppercase tracking-widest text-brew-ink">
-            Taproom Reserve
+            Taproom retreats
           </span>
           <figcaption className="absolute inset-x-5 bottom-5">
             <p className="font-display text-xl sm:text-2xl text-white">
