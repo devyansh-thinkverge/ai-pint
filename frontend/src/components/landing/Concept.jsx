@@ -27,8 +27,8 @@ const CARDS = [
     icon: Users,
     title: "The after",
     text: "Networking that flows as easily as the round.",
-    img: "https://images.unsplash.com/photo-1724866976376-4b217d29a462?crop=entropy&cs=srgb&fm=jpg&q=85",
-    alt: "Indian professionals networking at an event",
+    img: "https://images.unsplash.com/photo-1763651961188-17479f1760e9?crop=entropy&cs=srgb&fm=jpg&q=85",
+    alt: "Indian corporate professionals networking over drinks at a bar",
   },
 ];
 

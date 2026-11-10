@@ -4,7 +4,7 @@ import { ArrowRight, Beer, CalendarDays, MapPin } from "lucide-react";
 import { useLenis } from "lenis/react";
 
 const HERO_IMG =
-  "https://images.unsplash.com/photo-1790725673673-547b23f1ee61?crop=entropy&cs=srgb&fm=jpg&q=85";
+  "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?crop=entropy&cs=srgb&fm=jpg&q=85";
 
 const lines = ["Where India", "talks AI —", "over a pint."];
 
@@ -135,7 +135,7 @@ export default function Hero() {
           >
             <img
               src={HERO_IMG}
-              alt="A speaker addressing the room with a presentation screen behind"
+              alt="A keynote speaker addressing a packed audience under stage screens"
               className="h-[340px] sm:h-[440px] lg:h-[520px] w-full object-cover"
               loading="eager"
             />

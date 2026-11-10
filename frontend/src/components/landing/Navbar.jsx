@@ -5,9 +5,9 @@ import Logo from "./Logo";
 
 const LINKS = [
   { label: "Taproom evening", href: "#concept" },
-  { label: "An evening", href: "#evening" },
-  { label: "Reserve", href: "#retreats" },
-  { label: "The platform", href: "#platform" },
+  { label: "Taproom evenings", href: "#evening" },
+  { label: "Taproom Reserve", href: "#retreats" },
+  { label: "Taproom platform", href: "#platform" },
 ];
 
 export default function Navbar() {
