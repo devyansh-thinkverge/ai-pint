@@ -28,7 +28,10 @@ const PERKS = [
   },
 ];
 
-const DESTINATIONS = ["Goa", "Jaipur", "Coorg", "Rishikesh"];
+const DESTINATIONS = {
+  india: ["Goa", "Jaipur", "Coorg", "Rishikesh"],
+  international: ["Bali", "Sri Lanka"],
+};
 
 export default function Retreats() {
   const lenis = useLenis();
@@ -84,8 +87,24 @@ export default function Retreats() {
             <p className="text-xs font-extrabold uppercase tracking-widest text-white/50">
               Where the first retreats could go
             </p>
-            <div className="mt-3 flex flex-wrap gap-2.5">
-              {DESTINATIONS.map((d) => (
+            <div className="mt-3 flex flex-wrap items-center gap-2.5">
+              <span className="text-xs font-bold uppercase tracking-widest text-white/40">
+                India
+              </span>
+              {DESTINATIONS.india.map((d) => (
+                <span
+                  key={d}
+                  className="rounded-full border border-amber-400/40 bg-white/5 px-4 py-2 text-sm font-bold text-amber-300"
+                >
+                  {d}
+                </span>
+              ))}
+            </div>
+            <div className="mt-2.5 flex flex-wrap items-center gap-2.5">
+              <span className="text-xs font-bold uppercase tracking-widest text-white/40">
+                International
+              </span>
+              {DESTINATIONS.international.map((d) => (
                 <span
                   key={d}
                   className="rounded-full border border-amber-400/40 bg-white/5 px-4 py-2 text-sm font-bold text-amber-300"

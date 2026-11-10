@@ -1,11 +1,4 @@
-import { Twitter, Linkedin, Instagram } from "lucide-react";
 import Logo from "./Logo";
-
-const SOCIALS = [
-  { icon: Twitter, label: "Twitter", href: "#waitlist" },
-  { icon: Linkedin, label: "LinkedIn", href: "#waitlist" },
-  { icon: Instagram, label: "Instagram", href: "#waitlist" },
-];
 
 export default function Footer() {
   return (
@@ -19,20 +12,6 @@ export default function Footer() {
             taglineClass="text-[8px]"
           />
         </a>
-
-        <div className="flex items-center gap-4">
-          {SOCIALS.map((s) => (
-            <a
-              key={s.label}
-              href={s.href}
-              aria-label={s.label}
-              data-testid={`footer-social-${s.label.toLowerCase()}`}
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-brew-espresso/15 text-brew-espresso/70 transition-all hover:border-brew-amber hover:text-brew-amber hover:-translate-y-0.5"
-            >
-              <s.icon className="h-4 w-4" />
-            </a>
-          ))}
-        </div>
 
         <p className="text-sm text-brew-espresso/60">
           © {new Date().getFullYear()} AI Taproom · Delhi NCR

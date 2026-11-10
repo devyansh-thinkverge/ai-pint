@@ -256,18 +256,25 @@ export default function Bento() {
           </Card>
 
           {/* Certifications */}
-          <Card i={7} className="md:col-span-1 bg-brew-espresso border-brew-espresso">
+          <motion.div
+            variants={reveal}
+            custom={7}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.15 }}
+            className="group rounded-3xl border border-brew-espresso bg-brew-espresso p-7 sm:p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-brew-espresso/10"
+          >
             <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white/10 text-amber-400">
               <GraduationCap className="h-5 w-5" />
             </div>
             <h3 className="mt-5 font-display text-xl sm:text-2xl font-semibold tracking-tight text-brew-foam">
               Certification courses
             </h3>
-            <p className="mt-3 text-sm sm:text-base leading-relaxed text-brew-foam/75">
+            <p className="mt-3 text-sm sm:text-base leading-relaxed text-brew-foam/85">
               Subscribable, paid certification tracks — and your points can go
               towards them.
             </p>
-          </Card>
+          </motion.div>
         </div>
       </div>
     </section>
