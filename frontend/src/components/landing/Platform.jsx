@@ -9,6 +9,8 @@ import {
   Compass,
   Trophy,
   GraduationCap,
+  Sparkles,
+  Mic2,
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
@@ -70,6 +72,18 @@ const SLIDES = [
     title: "Certification courses",
     desc: "Subscribable, paid certification tracks — and your points can go towards them.",
     chips: ["Learn", "Get certified", "Redeem points"],
+  },
+  {
+    icon: Sparkles,
+    title: "Membership: AI features unlocked",
+    desc: "Membership plans switch on the AI layer for members — personalised discovery, instant summaries and priority access, all matched to your interests.",
+    chips: ["Personalised Explore", "AI summaries", "Priority seats", "Circle access", "Points boosts"],
+  },
+  {
+    icon: Mic2,
+    title: "Speaker membership: the copilot",
+    desc: "Speaker plans unlock the AI copilot for every talk you give — from assigned topic to a room matched to what you teach.",
+    chips: ["AI curriculum builder", "Audience matchmaking", "Session intelligence", "Event summaries"],
   },
 ];
 

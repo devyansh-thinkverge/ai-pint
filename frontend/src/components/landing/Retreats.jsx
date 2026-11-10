@@ -23,13 +23,13 @@ const ITINERARY = [
     n: "01",
     icon: GraduationCap,
     title: "Masterclasses",
-    text: "Deep-dive sessions with AI leaders — small rooms, hard questions, real depth.",
+    text: "Agentic security, compliance and governance, enterprise adoption — taught live from experts in small rooms with hard questions.",
   },
   {
     n: "02",
     icon: Wrench,
     title: "Hands-on workshops",
-    text: "Full working sessions — build agents, pipelines and prompts with experts beside you.",
+    text: "Full working sessions — build AI agent frameworks, RAG pipelines and prompt systems with experts beside you.",
   },
   {
     n: "03",
@@ -37,6 +37,15 @@ const ITINERARY = [
     title: "Industry panel sessions",
     text: "Operators and leaders debating where AI is actually headed — and what it means for your business.",
   },
+];
+
+const WORKSHOP_THEMES = [
+  "Agentic security",
+  "Compliance & governance",
+  "Building AI agent frameworks",
+  "RAG & pipelines",
+  "Prompt systems",
+  "AI in finance ops",
 ];
 
 const PERKS = [
@@ -105,6 +114,23 @@ export default function Retreats() {
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* workshop themes */}
+          <div className="mt-8" data-testid="retreat-workshop-themes">
+            <p className="text-xs font-extrabold uppercase tracking-[0.25em] text-amber-400">
+              Workshop themes — taught live from experts
+            </p>
+            <div className="mt-3 flex flex-wrap gap-2.5">
+              {WORKSHOP_THEMES.map((t) => (
+                <span
+                  key={t}
+                  className="rounded-full border border-amber-400/40 bg-white/5 px-4 py-2 text-sm font-bold text-amber-300"
+                >
+                  {t}
+                </span>
+              ))}
+            </div>
           </div>
 
           {/* perks */}
