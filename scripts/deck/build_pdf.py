@@ -225,7 +225,7 @@ pillars = [
     ("03", "Communities", "Event forums and admin-moderated topic Circles."),
     ("04", "Explore", "Latest AI news, blogs, podcasts and member posts."),
     ("05", "Academy", "Courses, learning paths and certification tracks."),
-    ("06", "Rewards", "Points, streaks, leaderboards and a redemption marketplace."),
+    ("06", "Rewards", "Points, streaks, leaderboards and a marketplace redeemable on retreats & courses."),
 ]
 for i, (n, t, d) in enumerate(pillars):
     xx = M + (i % 3) * 298
@@ -389,7 +389,7 @@ streams = [
     ("Sponsorships & events", "25%", "Branded AI knowledge series and hosted roundtables."),
     ("Academy & courses", "20%", "Paid certification courses — points redeemable against them."),
     ("Corporate workshops", "15%", "Technical and executive AI workshops, per-session."),
-    ("Premium membership", "10%", "Individual power users who want more."),
+    ("Premium membership", "10%", "Individual power users who want more — retreat access included."),
 ]
 yy0 = 168
 for t, pct, d in streams:
@@ -404,7 +404,34 @@ text(M, 82, "subscriptions and sponsorships.", "Manrope", 9.5, GREY)
 footer(11)
 c.showPage()
 
-# ---------- 12. ROADMAP ----------
+# ---------- 12. PREMIUM RETREATS ----------
+rect(0, 0, PAGE_W, PAGE_H, INK)
+eyebrow("Premium tier", AMBER_L)
+head(["Weekend retreats. Same spirit,", "bigger views."], FOAM)
+perks = [
+    ("Destination weekends", "Short trips to popular getaways — two nights, one unbroken agenda: talks, drinks and the right people."),
+    ("The taproom format, away", "Expert talks over drinks, live acts and roundtables stretched across a whole weekend — not a conference in a ballroom."),
+    ("Points do the travelling", "Redeem points on retreat seats and upgrades, and unlock exclusive events reserved for premium members."),
+]
+yy = 352
+for t, d in perks:
+    text(M, yy, t, "Fraunces-Bold", 15.5, FOAM)
+    yy2 = yy - 22
+    for ln in wrap(d, "Manrope", 10, 420):
+        text(M, yy2, ln, "Manrope", 10, SOFT)
+        yy2 -= 14
+    yy -= 78
+img_cover(f"{IMGDIR}/retreat.jpg", 540, 168, 370, 260, darken=0.85)
+rect(540, 168, 370, 62, INK)
+text(560, 200, "Evening one: a valley circle, not a ballroom.", "Fraunces-Bold", 12.5, FOAM)
+text(560, 182, "Talks at sunset, drinks after, conversations till late.", "Manrope", 9, SOFT)
+chip(800, 396, 90, "PREMIUM", fill=AMBER, fg=INK)
+text(540, 118, "India:  Goa · Jaipur · Coorg · Rishikesh      International:  Bali · Sri Lanka", "Manrope", 10, SOFT)
+text(M, 60, "Illustrative destinations — founding members help pick the map.", "Manrope", 8.5, FAINT)
+footer(12, dark=True)
+c.showPage()
+
+# ---------- 13. ROADMAP ----------
 rect(0, 0, PAGE_W, PAGE_H, FOAM)
 eyebrow("Roadmap")
 head(["Disciplined in three phases."])
@@ -413,7 +440,7 @@ phases = [
      "Waitlist & registration, city events, moderator-assigned topics with the speaker copilot, event forums, six Circles, Explore feed, basic XP & leaderboard. Landing page and waitlist are live today.",
      "Prove members attend, return and build relationships.", WHITE, INK, GREY, AMBER),
     ("PHASE 2 · MONTHS 3–6", "Always-on platform",
-     "AI knowledge packs, personalised Explore, AI networking, member publishing, rewards marketplace, paid courses, corporate memberships & private Circles.",
+     "AI knowledge packs, personalised Explore, AI networking, member publishing, rewards marketplace, paid courses, corporate memberships & private Circles, premium weekend retreats.",
      "Grow retention, paid conversion and corporate revenue.", WHITE, INK, GREY, AMBER),
     ("PHASE 3 · MONTHS 6–12+", "The ecosystem",
      "Enterprise learning, expert directory, research reports, partner certifications, new city chapters, national conference.",
@@ -436,7 +463,7 @@ for i, (ph, t, d, crit, fill, fg, sub, phc) in enumerate(phases):
     for ln in wrap("Success: " + crit, "Manrope-Bold", 9, 236):
         text(xx + 20, yy2, ln, "Manrope-Bold", 9, sub if i == 2 else AMBER)
         yy2 -= 13
-footer(12)
+footer(13)
 c.showPage()
 
 # ---------- 13. VALIDATION TARGETS ----------
@@ -456,7 +483,7 @@ for i, (n, lab) in enumerate(targets):
     text(xx + 16, yy0 - 30, n, "Fraunces-Bold", 21, AMBER_L)
     text(xx + 16, yy0 - 52, lab, "Manrope", 9.5, FOAM)
 text(M, 82, "Targets for validating the model — not forecasts. North-star metric: monthly active contributing members.", "Manrope", 10, SOFT)
-footer(13, dark=True)
+footer(14, dark=True)
 c.showPage()
 
 # ---------- 14. VISION & ASK ----------

@@ -184,7 +184,8 @@ table(
     ["Pillar", "What it includes", "Phase"],
     [
         ["Experiences", "Bar-hosted evening events (6 PM doors, flowing past 8 PM), roundtables, workshops, ticketing. Five-beat format: doors & first pint → the talk (45 minutes) → live performance (audience submits questions for the speaker or panelists) → moderator-led Q&A (moderators read the submitted questions towards the end) → afters & networking (from 8 PM)", "1"],
-        ["AI Copilot", "Topic taxonomy assigned by moderators per speaker (Agentic AI; AI Security & Governance; AI in Enterprise, Finance, Healthcare; AI for Developers; Infrastructure; Generative AI; Research; AI Product & Startups), AI-generated event curricula, post-event summarisation, personalised recommendations", "1–2"],
+        ["Retreats (premium tier)", "Weekend destination retreats for premium members — the same talk-over-drinks format and networking stretched across two days; points redeemable on seats and upgrades; exclusive member-only events. Candidate destinations: Goa, Jaipur, Coorg, Rishikesh (India) and Bali, Sri Lanka (international) — illustrative, shaped by member demand", "2–3"],
+        ["AI Copilot", "Topic taxonomy assigned by moderators per speaker (Agentic AI; AI Security & Governance; AI in Enterprise, Finance, Healthcare; AI for Developers; Infrastructure; Generative AI; Research; AI Product & Startups; AI in Textiles & Supply Chain; Voice & Vernacular AI), AI-generated event curricula, post-event summarisation, personalised recommendations", "1–2"],
         ["Communities", "Per-event discussion forums, admin-moderated Circles (six at launch), private corporate Circles, networking", "1–2"],
         ["Explore", "Automated pull of AI blogs, news, research, podcasts, videos; member posts; personalised feed", "1–2"],
         ["Academy", "Paid courses, learning paths, assessments, certification tracks (points-redeemable)", "2–3"],
@@ -208,6 +209,7 @@ bullets([
     "AI-generated event knowledge packs; personalised Explore recommendations; AI networking and attendee matching",
     "Member blogging and publishing; rewards redemption marketplace; paid courses and learning paths",
     "Speaker preparation workspace; corporate memberships; private corporate Circles; advanced analytics",
+    "Premium weekend retreats — Indian and international destinations — with points redemption on seats and upgrades",
 ])
 para("Success criteria: improved retention, paid conversion and corporate revenue.", italic=True, color=GREY)
 h2("Phase 3 — Scale (months 6–12+)")
@@ -247,7 +249,10 @@ para("Corporate product suite: corporate memberships (annual subscription), priv
 para("Five revenue streams with an illustrative long-term mix (planning assumptions, not a forecast): corporate subscriptions "
      "30%, sponsorships and events 25%, academy and courses 20%, corporate workshops 15%, premium membership 10%. Early revenue "
      "prioritises corporate subscriptions and sponsorships. Sponsored content must always be labelled; sponsors do not control "
-     "independent discussion or member opinions.", space_after=10)
+     "independent discussion or member opinions.")
+para("Premium tier: weekend AI retreats — Indian and international destinations (Goa, Jaipur, Coorg, Rishikesh; Bali and Sri "
+     "Lanka as candidates) — with points redemption on seats and upgrades and exclusive member-only events. Retreat access is a "
+     "premium-membership benefit.", space_after=10)
 
 h1("8. Success metrics")
 para("North-star metric: monthly active contributing members — not registered users.")
@@ -298,7 +303,8 @@ bullets([
     "Landing page (React, Tailwind, Framer Motion, Lenis) branded AI Taproom: kinetic hero, concept story, five-beat evening timeline (6 PM doors, live-performance question collection, moderator-led Q&A, from 8 PM networking), feature bento with an expandable topics accordion, topics marquee, Delhi NCR launch card with next-city teaser, and footer — live in preview",
     "Working waitlist API (FastAPI + MongoDB): email + role capture, duplicate detection, count endpoint — verified end-to-end",
     "Custom SVG brand mark (beer-foam / neural-node) kept from Brewed Intelligence; favicon, SEO meta, canonical aitaproom.club, robots.txt, sitemap.xml and llms.txt",
-    "Investor pitch deck (14-slide PPTX + matching PDF) and this PRD, updated for the AI Taproom brand and Delhi NCR launch scope",
+    "Premium-tier retreats section (weekend destination format with India + international candidate destinations, points redemption) and an eight-session topics accordion including AI in Textiles, AI in Supply Chain, Voice & Vernacular AI and AI in Healthcare",
+    "Investor pitch deck (15-slide PPTX + matching PDF) and this PRD, updated for the AI Taproom brand, Delhi NCR launch scope and the premium retreat tier",
 ])
 
 doc.add_paragraph()

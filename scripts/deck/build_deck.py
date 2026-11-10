@@ -220,7 +220,7 @@ pillars = [
     ("Communities", "Event forums and admin-moderated topic Circles."),
     ("Explore", "Latest AI news, blogs, podcasts and member posts."),
     ("Academy", "Courses, learning paths and certification tracks."),
-    ("Rewards", "Points, streaks, leaderboards and a redemption marketplace."),
+    ("Rewards", "Points, streaks, leaderboards and a marketplace redeemable on retreats & courses."),
 ]
 for i, (t, d) in enumerate(pillars):
     xx = Inches(0.9) + (i % 3) * Inches(3.95)
@@ -380,7 +380,7 @@ streams = [
     ("Sponsorships & events", "25%", "Branded AI knowledge series and hosted roundtables."),
     ("Academy & courses", "20%", "Paid certification courses — points redeemable against them."),
     ("Corporate workshops", "15%", "Technical and executive AI workshops, per-session."),
-    ("Premium membership", "10%", "Individual power users who want more."),
+    ("Premium membership", "10%", "Individual power users who want more — retreat access included."),
 ]
 yy = Inches(2.6)
 for t, pct, d in streams:
@@ -397,14 +397,45 @@ text(s, Inches(0.9), Inches(6.45), Inches(11.5), Inches(0.5),
      [[("Illustrative long-term mix for planning — not a forecast. Early revenue prioritises corporate subscriptions and sponsorships.", 11.5, False, GREY, BODY, True)]], space_after=0)
 footer(s, 11)
 
-# ---------- 12. ROADMAP ----------
+# ---------- 12. PREMIUM RETREATS ----------
+s = slide()
+bg(s, INK)
+eyebrow(s, "Premium tier", color=AMBER_L)
+head(s, "Weekend retreats. Same spirit,\nbigger views.", color=FOAM)
+perks = [
+    ("Destination weekends", "Short trips to popular getaways — two nights, one unbroken agenda: talks, drinks and the right people."),
+    ("The taproom format, away", "Expert talks over drinks, live acts and roundtables stretched across a whole weekend — not a conference in a ballroom."),
+    ("Points do the travelling", "Redeem points on retreat seats and upgrades, and unlock exclusive events reserved for premium members."),
+]
+yy = Inches(2.8)
+for t, d in perks:
+    text(s, Inches(0.9), yy, Inches(5.7), Inches(1.05),
+         [[(t, 17, True, FOAM, DISPLAY)],
+          [(d, 12, False, RGBColor(0xD6, 0xD3, 0xD1), BODY)]], space_after=2)
+    yy += Inches(1.1)
+pic_cover(s, f"{IMG}/retreat.jpg", Inches(7.0), Inches(2.35), Inches(5.43), Inches(3.6), darken=0.85)
+cap = rect(s, Inches(7.0), Inches(5.15), Inches(5.43), Inches(0.8), INK)
+text(s, Inches(7.25), Inches(5.25), Inches(4.95), Inches(0.65),
+     [[("Evening one: a valley circle, not a ballroom.", 14, True, FOAM, DISPLAY)],
+      [("Talks at sunset, drinks after, conversations till late.", 10.5, False, RGBColor(0xD6, 0xD3, 0xD1), BODY)]], space_after=1)
+chip(s, Inches(11.05), Inches(2.6), Inches(1.15), "PREMIUM", fill=AMBER, fg=INK)
+text(s, Inches(7.0), Inches(6.15), Inches(5.5), Inches(0.7),
+     [[("India:  ", 11.5, True, AMBER_L, BODY),
+       ("Goa · Jaipur · Coorg · Rishikesh", 11.5, False, RGBColor(0xD6, 0xD3, 0xD1), BODY)],
+      [("International:  ", 11.5, True, AMBER_L, BODY),
+       ("Bali · Sri Lanka", 11.5, False, RGBColor(0xD6, 0xD3, 0xD1), BODY)]], space_after=3)
+text(s, Inches(0.9), Inches(6.6), Inches(5.9), Inches(0.4),
+     [[("Illustrative destinations — founding members help pick the map.", 10, False, RGBColor(0xA8, 0xA2, 0x9E), BODY, True)]], space_after=0)
+footer(s, 12, dark=True)
+
+# ---------- 13. ROADMAP ----------
 s = slide()
 bg(s)
 eyebrow(s, "Roadmap")
 head(s, "Disciplined in three phases.")
 phases = [
     ("Phase 1 · Months 0–3", "Community foundation", "Waitlist & registration, city events, moderator-assigned topics with the speaker copilot, event forums, six Circles, Explore feed, basic XP & leaderboard. Landing page and waitlist are live today.", "Prove members attend, return and build relationships."),
-    ("Phase 2 · Months 3–6", "Always-on platform", "AI knowledge packs, personalised Explore, AI networking, member publishing, rewards marketplace, paid courses, corporate memberships & private Circles.", "Grow retention, paid conversion and corporate revenue."),
+    ("Phase 2 · Months 3–6", "Always-on platform", "AI knowledge packs, personalised Explore, AI networking, member publishing, rewards marketplace, paid courses, corporate memberships & private Circles, premium weekend retreats.", "Grow retention, paid conversion and corporate revenue."),
     ("Phase 3 · Months 6–12+", "The ecosystem", "Enterprise learning, expert directory, research reports, partner certifications, new city chapters, national conference.", "Repeatable city economics and recurring enterprise contracts."),
 ]
 for i, (ph, t, d, crit) in enumerate(phases):
@@ -419,7 +450,7 @@ for i, (ph, t, d, crit) in enumerate(phases):
           [(t, 20, True, fg, DISPLAY)],
           [(d, 12, False, sub, BODY)],
           [("Success: " + crit, 11, False, sub if i == 2 else AMBER, BODY, True)]], space_after=7)
-footer(s, 12)
+footer(s, 13)
 
 # ---------- 13. VALIDATION TARGETS ----------
 s = slide()
@@ -441,7 +472,7 @@ for i, (n, lab) in enumerate(targets):
           [(lab, 12, False, FOAM, BODY)]], space_after=2)
 text(s, Inches(0.9), Inches(6.55), Inches(11.5), Inches(0.5),
      [[("Targets for validating the model — not forecasts. North-star metric: monthly active contributing members.", 12, False, RGBColor(0xD6, 0xD3, 0xD1), BODY, True)]], space_after=0)
-footer(s, 13, dark=True)
+footer(s, 14, dark=True)
 
 # ---------- 14. VISION & ASK ----------
 s = slide()
