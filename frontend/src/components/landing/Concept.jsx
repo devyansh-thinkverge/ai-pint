@@ -6,8 +6,8 @@ const CARDS = [
     icon: MessagesSquare,
     title: "The talk",
     text: "45 minutes, one hot AI topic, zero fluff.",
-    img: "https://images.unsplash.com/photo-1774094453087-0207a0cd2309?crop=entropy&cs=srgb&fm=jpg&q=85",
-    alt: "A professionally dressed speaker addressing a panel on stage",
+    img: "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?crop=entropy&cs=srgb&fm=jpg&q=85",
+    alt: "A professionally dressed speaker addressing a packed audience on stage",
   },
   {
     icon: Beer,

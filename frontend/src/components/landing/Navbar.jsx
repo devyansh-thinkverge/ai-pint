@@ -4,10 +4,9 @@ import { ArrowRight } from "lucide-react";
 import Logo from "./Logo";
 
 const LINKS = [
-  { label: "Taproom evening", href: "#concept" },
-  { label: "Taproom evenings", href: "#evening" },
-  { label: "Taproom Reserve", href: "#retreats" },
-  { label: "Taproom platform", href: "#platform" },
+  { label: "The evening", href: "#concept" },
+  { label: "Taproom retreats", href: "#retreats" },
+  { label: "The platform", href: "#platform" },
 ];
 
 export default function Navbar() {
