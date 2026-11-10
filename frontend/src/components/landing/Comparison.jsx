@@ -92,9 +92,35 @@ export default function Comparison() {
               loading="lazy"
               draggable={false}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-brew-ink/40 via-transparent to-brew-ink/25" />
 
-            {/* overlay — conference, clipped */}
+            {/* right-side overlay — taproom points, clipped to the expanding right */}
+            <div
+              className="absolute inset-0"
+              style={{
+                clipPath: `inset(0 0 0 ${pos}%)`,
+                transition: dragging ? "none" : "clip-path 0.3s ease",
+              }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-t from-brew-ink/85 via-brew-ink/15 to-brew-ink/20" />
+              <span className="absolute top-4 right-4 rounded-full bg-amber-400 px-4 py-2 text-xs sm:text-sm font-extrabold text-brew-ink">
+                AI Taproom
+              </span>
+              <ul className="absolute bottom-4 right-4 w-[min(320px,68%)] space-y-2.5 sm:bottom-6 sm:right-6 sm:space-y-3">
+                {RIGHT_POINTS.map((pt) => (
+                  <li
+                    key={pt}
+                    className="flex items-start gap-2.5 text-[11px] sm:text-sm font-semibold text-brew-foam"
+                  >
+                    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-amber-400">
+                      <Check className="h-3.5 w-3.5 text-brew-ink" />
+                    </span>
+                    {pt}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* left-side overlay — conference, clipped to the expanding left */}
             <div
               className="absolute inset-0"
               style={{
@@ -109,15 +135,25 @@ export default function Comparison() {
                 loading="lazy"
                 draggable={false}
               />
-              <div className="absolute inset-0 bg-brew-ink/30" />
+              <div className="absolute inset-0 bg-brew-ink/35" />
+              <div className="absolute inset-0 bg-gradient-to-t from-brew-ink/85 via-brew-ink/10 to-brew-ink/20" />
               <span className="absolute top-4 left-4 rounded-full bg-brew-ink/70 px-4 py-2 text-xs sm:text-sm font-bold text-white/90 backdrop-blur">
                 Conferences & meetups
               </span>
+              <ul className="absolute bottom-4 left-4 w-[min(320px,68%)] space-y-2.5 sm:bottom-6 sm:left-6 sm:space-y-3">
+                {LEFT_POINTS.map((pt) => (
+                  <li
+                    key={pt}
+                    className="flex items-start gap-2.5 text-[11px] sm:text-sm font-semibold text-white/85"
+                  >
+                    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-white/15">
+                      <X className="h-3.5 w-3.5 text-white/80" />
+                    </span>
+                    {pt}
+                  </li>
+                ))}
+              </ul>
             </div>
-
-            <span className="absolute top-4 right-4 rounded-full bg-amber-400 px-4 py-2 text-xs sm:text-sm font-extrabold text-brew-ink">
-              AI Taproom
-            </span>
 
             {/* divider + handle */}
             <div
@@ -141,60 +177,12 @@ export default function Comparison() {
           </div>
         </motion.div>
 
-        <div className="mt-10 grid gap-5 md:grid-cols-2">
-          <motion.div
-            variants={reveal}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.15 }}
-            data-testid="comparison-left-list"
-            className="rounded-3xl border border-brew-espresso/10 bg-white p-7 sm:p-8"
-          >
-            <h3 className="font-display text-xl font-semibold tracking-tight text-brew-espresso/70">
-              Conferences & meetups
-            </h3>
-            <ul className="mt-5 space-y-3.5">
-              {LEFT_POINTS.map((pt) => (
-                <li key={pt} className="flex items-start gap-3 text-sm sm:text-base text-brew-espresso/60">
-                  <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brew-espresso/10">
-                    <X className="h-3.5 w-3.5 text-brew-espresso/60" />
-                  </span>
-                  {pt}
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-
-          <motion.div
-            variants={reveal}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.15 }}
-            data-testid="comparison-right-list"
-            className="rounded-3xl border border-brew-amber/40 bg-brew-cream/60 p-7 sm:p-8"
-          >
-            <h3 className="font-display text-xl font-semibold tracking-tight text-brew-ink">
-              The AI Taproom way
-            </h3>
-            <ul className="mt-5 space-y-3.5">
-              {RIGHT_POINTS.map((pt) => (
-                <li key={pt} className="flex items-start gap-3 text-sm sm:text-base text-brew-ink">
-                  <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brew-amber">
-                    <Check className="h-3.5 w-3.5 text-white" />
-                  </span>
-                  {pt}
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-        </div>
-
         <motion.div
           variants={reveal}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.15 }}
-          className="mt-6 rounded-3xl bg-brew-espresso px-7 py-6 sm:px-10 sm:py-8"
+          className="mt-10 rounded-3xl bg-brew-espresso px-7 py-6 sm:px-10 sm:py-8"
         >
           <p className="text-center text-sm sm:text-lg leading-relaxed text-brew-foam/90">
             Behind the bar, our{" "}
