@@ -13,8 +13,8 @@ const CARDS = [
     icon: Beer,
     title: "The pint",
     text: "On us. Light drinks while you learn.",
-    img: "https://images.unsplash.com/photo-1706295330801-2cfc00c53244?crop=entropy&cs=srgb&fm=jpg&q=85",
-    alt: "Indian colleagues enjoying drinks together over a session",
+    img: "https://customer-assets-0z36b82j.emergentagent.net/job_ai-pint--08esny1p/artifacts/4b2ac8c82f9ad295_WhatsApp%20Image%202026-11-10%20at%205.44.50%20PM.jpeg",
+    alt: "Learners enjoying drinks during an AI Security Playbook session at the Taproom",
   },
   {
     icon: Music,
