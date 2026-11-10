@@ -49,9 +49,9 @@ const WORKSHOP_THEMES = [
 ];
 
 const PERKS = [
-  { icon: CalendarCheck, text: "A fixed number of retreats every year, included with premium membership" },
+  { icon: CalendarCheck, text: "A fixed number of retreats every year, included with Reserve membership" },
   { icon: Trophy, text: "Points redeemable on seats and upgrades" },
-  { icon: Sparkles, text: "Exclusive premium-only events and evenings" },
+  { icon: Sparkles, text: "Exclusive Reserve-only events and evenings" },
 ];
 
 const DESTINATIONS = {
@@ -80,15 +80,15 @@ export default function Retreats() {
           viewport={{ once: true, amount: 0.15 }}
         >
           <p className="text-xs font-extrabold uppercase tracking-[0.25em] text-amber-400">
-            Premium tier
+            Taproom Reserve
           </p>
           <h2 className="mt-4 font-display font-semibold tracking-tight text-3xl sm:text-4xl lg:text-5xl leading-tight">
-            The elite tier: retreats that go deeper.
+            Retreats that go deeper.
           </h2>
           <p className="mt-5 text-base sm:text-lg leading-relaxed text-brew-foam/80">
             Premium members join every taproom evening — and a{" "}
             <span className="font-bold text-amber-400">fixed number of retreats</span>{" "}
-            every year, included in the membership. Short getaways or longer
+            every year, included with Taproom Reserve membership. Short getaways or longer
             immersions, the format stretches into serious learning with the
             people building India's AI.
           </p>
@@ -185,7 +185,7 @@ export default function Retreats() {
             }}
             className="group mt-9 inline-flex items-center gap-2 rounded-full bg-amber-400 px-7 py-3.5 text-sm font-extrabold text-brew-ink transition-all hover:bg-amber-300 hover:shadow-xl hover:shadow-amber-400/25 hover:-translate-y-0.5"
           >
-            Join the waitlist — premium tier
+            Join the waitlist — Taproom Reserve
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
           </a>
         </motion.div>
@@ -206,7 +206,7 @@ export default function Retreats() {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-brew-espresso/90 via-brew-espresso/10 to-transparent" />
           <span className="absolute top-4 right-4 rounded-full bg-amber-400 px-3.5 py-1.5 text-[11px] font-extrabold uppercase tracking-widest text-brew-ink">
-            Premium tier
+            Taproom Reserve
           </span>
           <figcaption className="absolute inset-x-5 bottom-5">
             <p className="font-display text-xl sm:text-2xl text-white">

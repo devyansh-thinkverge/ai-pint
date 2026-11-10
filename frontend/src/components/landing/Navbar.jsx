@@ -4,11 +4,10 @@ import { ArrowRight } from "lucide-react";
 import Logo from "./Logo";
 
 const LINKS = [
-  { label: "The idea", href: "#concept" },
+  { label: "Taproom evening", href: "#concept" },
   { label: "An evening", href: "#evening" },
+  { label: "Reserve", href: "#retreats" },
   { label: "The platform", href: "#platform" },
-  { label: "Retreats", href: "#retreats" },
-  { label: "Cities", href: "#cities" },
 ];
 
 export default function Navbar() {

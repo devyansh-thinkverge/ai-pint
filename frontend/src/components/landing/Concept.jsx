@@ -53,10 +53,10 @@ export default function Concept() {
           className="max-w-3xl"
         >
           <p className="text-xs font-extrabold uppercase tracking-[0.25em] text-brew-amber">
-            The idea
+            The Taproom evening
           </p>
           <h2 className="mt-4 font-display font-semibold tracking-tight text-brew-ink text-3xl sm:text-4xl lg:text-5xl leading-tight">
-            A lecture you'd actually stay for. Except the beer's on us.
+            An evening you'd actually stay for. Except the beer's on us.
           </h2>
           <p className="mt-6 text-base sm:text-lg leading-relaxed text-brew-espresso/80">
             No fluorescent conference halls, no badge scanners, no death-by-PPT.

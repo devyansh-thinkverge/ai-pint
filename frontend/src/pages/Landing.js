@@ -20,8 +20,8 @@ export default function Landing() {
         <main>
           <Hero />
           <Concept />
-          <Retreats />
           <Timeline />
+          <Retreats />
           <Comparison />
           <Platform />
           <MarqueeStrip />
