@@ -35,6 +35,26 @@ const TOPICS = [
     detail:
       "Coding agents, RAG, MCP and the AI-powered tools changing how software gets written — for the people writing it.",
   },
+  {
+    title: "AI in Textiles",
+    detail:
+      "From loom to label — design generation, fabric-defect detection, inventory prediction and what smart factories mean for India's garment belt.",
+  },
+  {
+    title: "AI in Supply Chain",
+    detail:
+      "Demand forecasting, warehouse automation, route optimisation and the algorithms deciding what reaches which shelf, when.",
+  },
+  {
+    title: "Voice & Vernacular AI",
+    detail:
+      "AI that speaks India's languages — voice interfaces, regional models and products built for the next billion users.",
+  },
+  {
+    title: "AI in Healthcare",
+    detail:
+      "Diagnostics, patient triage and clinical documentation — where AI is already helping doctors, and where it must not go.",
+  },
 ];
 
 const reveal = {

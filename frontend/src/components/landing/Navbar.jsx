@@ -7,6 +7,7 @@ const LINKS = [
   { label: "The idea", href: "#concept" },
   { label: "An evening", href: "#evening" },
   { label: "The platform", href: "#platform" },
+  { label: "Retreats", href: "#retreats" },
   { label: "Cities", href: "#cities" },
 ];
 
