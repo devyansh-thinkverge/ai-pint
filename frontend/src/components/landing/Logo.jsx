@@ -8,25 +8,34 @@ export default function Logo({
     <span className="flex items-center gap-2.5">
       <svg viewBox="0 0 64 64" className={className} aria-hidden="true">
         <rect width="64" height="64" rx="16" fill="#1C1917" />
-        <g fill="none" stroke="#D97706" strokeWidth="2.5" strokeLinecap="round">
-          <path d="M20 44 L26 28 L32 38 L38 20 L44 32" />
+        {/* neural-network foam */}
+        <g stroke="#FCD34D" strokeWidth="1.6" opacity="0.9" fill="none">
+          <path d="M23 17 L32 12.5 L41 17" />
+          <path d="M23 17 L32 21.5 L41 17" />
+          <path d="M32 12.5 L32 21.5" />
+          <path d="M32 21.5 V26.5" />
         </g>
-        <g fill="#FCD34D">
-          <circle cx="20" cy="44" r="3.4" />
-          <circle cx="26" cy="28" r="3.4" />
-          <circle cx="32" cy="38" r="3.4" />
-          <circle cx="38" cy="20" r="3.4" />
-          <circle cx="44" cy="32" r="3.4" />
-        </g>
+        <circle cx="23" cy="17" r="2.8" fill="#FCD34D" />
+        <circle cx="32" cy="12.5" r="3.2" fill="#FCD34D" />
+        <circle cx="41" cy="17" r="2.8" fill="#FCD34D" />
+        <circle cx="32" cy="21.5" r="2.4" fill="#FAFAF9" />
+        {/* pint glass */}
         <path
-          d="M14 12 h36 a4.5 4.5 0 0 1 0 9 H14 a4.5 4.5 0 0 1 0 -9 z"
-          fill="#FAFAF9"
-          opacity="0.94"
+          d="M20.5 26.5 H43.5 L41 49.5 Q40.6 54 36.2 54 H27.8 Q23.4 54 23 49.5 Z"
+          fill="none"
+          stroke="#D97706"
+          strokeWidth="2.6"
+          strokeLinejoin="round"
         />
-        <circle cx="21" cy="16.5" r="1.5" fill="#D97706" />
-        <circle cx="29" cy="16.5" r="1.5" fill="#D97706" />
-        <circle cx="37" cy="16.5" r="1.5" fill="#D97706" />
-        <circle cx="45" cy="16.5" r="1.5" fill="#D97706" />
+        <path
+          d="M43.5 31 h2.6 a5.4 5.4 0 0 1 0 10.8 h-3.4"
+          fill="none"
+          stroke="#D97706"
+          strokeWidth="2.4"
+          strokeLinecap="round"
+        />
+        <circle cx="29.5" cy="42" r="1.6" fill="#D97706" opacity="0.8" />
+        <circle cx="35.5" cy="46.5" r="1.2" fill="#D97706" opacity="0.65" />
       </svg>
       <span className="flex flex-col leading-none">
         <span
