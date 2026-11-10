@@ -4,7 +4,7 @@ import Hero from "@/components/landing/Hero";
 import Concept from "@/components/landing/Concept";
 import Timeline from "@/components/landing/Timeline";
 import Comparison from "@/components/landing/Comparison";
-import Bento from "@/components/landing/Bento";
+import Platform from "@/components/landing/Platform";
 import Retreats from "@/components/landing/Retreats";
 import MarqueeStrip from "@/components/landing/MarqueeStrip";
 import Cities from "@/components/landing/Cities";
@@ -22,7 +22,7 @@ export default function Landing() {
           <Concept />
           <Timeline />
           <Comparison />
-          <Bento />
+          <Platform />
           <Retreats />
           <MarqueeStrip />
           <Cities />
