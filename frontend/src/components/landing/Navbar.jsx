@@ -7,6 +7,7 @@ const LINKS = [
   { label: "The evening", href: "#concept" },
   { label: "Taproom retreats", href: "#retreats" },
   { label: "The platform", href: "#platform" },
+  { label: "Events", href: "#events" },
 ];
 
 export default function Navbar() {

@@ -5,6 +5,7 @@ import Concept from "@/components/landing/Concept";
 import Timeline from "@/components/landing/Timeline";
 import Comparison from "@/components/landing/Comparison";
 import Platform from "@/components/landing/Platform";
+import Events from "@/components/landing/Events";
 import Retreats from "@/components/landing/Retreats";
 import MarqueeStrip from "@/components/landing/MarqueeStrip";
 import Cities from "@/components/landing/Cities";
@@ -25,6 +26,7 @@ export default function Landing() {
           <Comparison />
           <Platform />
           <MarqueeStrip />
+          <Events />
           <Cities />
           <Waitlist />
         </main>
