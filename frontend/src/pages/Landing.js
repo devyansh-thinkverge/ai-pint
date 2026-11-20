@@ -12,6 +12,7 @@ import MarqueeStrip from "@/components/landing/MarqueeStrip";
 import Cities from "@/components/landing/Cities";
 import Waitlist from "@/components/landing/Waitlist";
 import Footer from "@/components/landing/Footer";
+import SectionCut from "@/components/landing/SectionCut";
 
 export default function Landing() {
   return (
@@ -22,15 +23,31 @@ export default function Landing() {
         <main>
           <Hero />
           <ScrollStory />
-          <Concept />
-          <Timeline />
-          <Retreats />
-          <Comparison />
-          <Platform />
+          <SectionCut>
+            <Concept />
+          </SectionCut>
+          <SectionCut>
+            <Timeline />
+          </SectionCut>
+          <SectionCut>
+            <Retreats />
+          </SectionCut>
+          <SectionCut>
+            <Comparison />
+          </SectionCut>
+          <SectionCut>
+            <Platform />
+          </SectionCut>
           <MarqueeStrip />
-          <Events />
-          <Cities />
-          <Waitlist />
+          <SectionCut>
+            <Events />
+          </SectionCut>
+          <SectionCut>
+            <Cities />
+          </SectionCut>
+          <SectionCut>
+            <Waitlist />
+          </SectionCut>
         </main>
         <Footer />
       </div>
