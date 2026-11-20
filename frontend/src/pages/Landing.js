@@ -10,6 +10,7 @@ import Retreats from "@/components/landing/Retreats";
 import MarqueeStrip from "@/components/landing/MarqueeStrip";
 import Cities from "@/components/landing/Cities";
 import Waitlist from "@/components/landing/Waitlist";
+import PintScroll from "@/components/landing/PintScroll";
 import Footer from "@/components/landing/Footer";
 
 export default function Landing() {
@@ -17,6 +18,7 @@ export default function Landing() {
     <ReactLenis root options={{ lerp: 0.1, smoothWheel: true }}>
       <div className="relative min-h-screen bg-brew-foam text-brew-ink font-body">
         <div className="grain-overlay" aria-hidden="true" />
+        <PintScroll />
         <Navbar />
         <main>
           <Hero />

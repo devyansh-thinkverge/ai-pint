@@ -8,11 +8,16 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from dotenv import load_dotenv
-from fastapi import FastAPI, APIRouter, HTTPException, Query
+from fastapi import FastAPI, APIRouter, HTTPException
 from motor.motor_asyncio import AsyncIOMotorClient
 from pymongo import ASCENDING, DESCENDING, IndexModel
 from pydantic import BaseModel, Field, ConfigDict
 from starlette.middleware.cors import CORSMiddleware
+
+try:
+    import razorpay
+except ImportError:
+    razorpay = None
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
@@ -32,6 +37,9 @@ INDEXES: dict[str, list[IndexModel]] = {
     "bookings": [
         IndexModel([("event_id", ASCENDING), ("email", ASCENDING)], name="event_email", unique=True),
     ],
+    "payments": [
+        IndexModel([("order_id", ASCENDING)], name="order_id", unique=True),
+    ],
 }
 
 SEED_EVENT = {
@@ -41,11 +49,24 @@ SEED_EVENT = {
     "city": "Delhi NCR",
     "date_label": "Fri, 19 December",
     "time_label": "6:00 PM – 8:00 PM",
+    "price": 0,
     "whatsapp_url": os.environ.get("WHATSAPP_GROUP_URL", ""),
 }
 
-VALID_ROLES = {"corporate", "speaker", "member"}
 EMAIL_RE = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
+
+_rzp_client = None
+
+
+def rzp_client():
+    global _rzp_client
+    key_id = os.environ.get("RAZORPAY_KEY_ID", "")
+    key_secret = os.environ.get("RAZORPAY_KEY_SECRET", "")
+    if not key_id or not key_secret or razorpay is None:
+        return None
+    if _rzp_client is None:
+        _rzp_client = razorpay.Client(auth=(key_id, key_secret))
+    return _rzp_client
 
 
 async def ensure_indexes() -> None:
@@ -57,6 +78,23 @@ async def ensure_indexes() -> None:
                 logging.getLogger(__name__).error("ensure_indexes(%s): %s", collection, exc)
 
 
+async def seed_events() -> None:
+    seed = dict(SEED_EVENT)
+    seed["whatsapp_url"] = os.environ.get("WHATSAPP_GROUP_URL", "")
+    try:
+        await db.events.update_one(
+            {"id": seed["id"]},
+            {
+                "$setOnInsert": {k: v for k, v in seed.items() if k != "whatsapp_url"},
+                "$set": {"whatsapp_url": seed["whatsapp_url"]},
+            },
+            upsert=True,
+        )
+        logging.getLogger(__name__).info("seeded event %s", seed["id"])
+    except Exception as exc:
+        logging.getLogger(__name__).error("seed_events: %s", exc)
+
+
 app = FastAPI()
 api_router = APIRouter(prefix="/api")
 
@@ -65,14 +103,18 @@ class WaitlistEntry(BaseModel):
     model_config = ConfigDict(extra="ignore")
 
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    name: str
     email: str
-    role: str = "member"
+    company: str = ""
+    bio: str = ""
     created_at: str = Field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
 
 
 class WaitlistCreate(BaseModel):
+    name: str
     email: str
-    role: str = "member"
+    company: str = ""
+    bio: str = ""
 
 
 class Event(BaseModel):
@@ -84,6 +126,7 @@ class Event(BaseModel):
     city: str
     date_label: str
     time_label: str
+    price: int = 0
     whatsapp_url: str = ""
 
 
@@ -94,8 +137,8 @@ class Booking(BaseModel):
     event_id: str
     name: str
     email: str
-    phone: str = ""
     company: str = ""
+    bio: str = ""
     created_at: str = Field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
 
 
@@ -103,8 +146,24 @@ class BookingCreate(BaseModel):
     event_id: str
     name: str
     email: str
-    phone: str = ""
     company: str = ""
+    bio: str = ""
+
+
+class PaymentOrderCreate(BaseModel):
+    event_id: str
+    name: str = ""
+    email: str
+
+
+class PaymentVerify(BaseModel):
+    order_id: str
+    payment_id: str
+    signature: str
+
+
+def now_iso() -> str:
+    return datetime.now(timezone.utc).isoformat()
 
 
 @api_router.get("/")
@@ -114,13 +173,14 @@ async def root():
 
 @api_router.post("/waitlist", response_model=WaitlistEntry)
 async def join_waitlist(input: WaitlistCreate):
+    name = input.name.strip()
     email = input.email.strip().lower()
+    if not name:
+        raise HTTPException(status_code=400, detail="Please enter your name.")
     if not EMAIL_RE.match(email):
         raise HTTPException(status_code=400, detail="Please enter a valid email address.")
-    if input.role not in VALID_ROLES:
-        raise HTTPException(status_code=400, detail="Please choose who you are.")
 
-    entry = WaitlistEntry(email=email, role=input.role)
+    entry = WaitlistEntry(name=name, email=email, company=input.company.strip(), bio=input.bio.strip())
     try:
         await db.waitlist.insert_one(entry.model_dump())
     except Exception as exc:
@@ -137,8 +197,15 @@ async def waitlist_count():
 
 @api_router.get("/events")
 async def list_events():
-    docs = await db.events.find({}, {"_id": 0}).sort("created_at", ASCENDING).to_list(50)
-    return docs
+    return await db.events.find({}, {"_id": 0}).sort("created_at", ASCENDING).to_list(50)
+
+
+@api_router.get("/events/{event_id}")
+async def get_event(event_id: str):
+    doc = await db.events.find_one({"id": event_id}, {"_id": 0})
+    if not doc:
+        raise HTTPException(status_code=404, detail="Event not found.")
+    return doc
 
 
 @api_router.post("/bookings")
@@ -158,8 +225,8 @@ async def create_booking(input: BookingCreate):
         event_id=input.event_id,
         name=name,
         email=email,
-        phone=input.phone.strip(),
         company=input.company.strip(),
+        bio=input.bio.strip(),
     )
     try:
         await db.bookings.insert_one(booking.model_dump())
@@ -172,6 +239,69 @@ async def create_booking(input: BookingCreate):
         raise
 
     return {"booking": booking, "whatsapp_url": (event.get("whatsapp_url") or "").strip()}
+
+
+@api_router.post("/payments/order")
+async def create_payment_order(input: PaymentOrderCreate):
+    client = rzp_client()
+    if not client:
+        raise HTTPException(status_code=503, detail="Payments are not configured yet.")
+
+    email = input.email.strip().lower()
+    if not EMAIL_RE.match(email):
+        raise HTTPException(status_code=400, detail="Please enter a valid email address.")
+
+    event = await db.events.find_one({"id": input.event_id}, {"_id": 0})
+    if not event:
+        raise HTTPException(status_code=404, detail="Event not found.")
+
+    price = int(event.get("price") or 0)
+    if price <= 0:
+        raise HTTPException(status_code=400, detail="This event is free — no payment needed.")
+
+    order = client.order.create({
+        "amount": price,
+        "currency": "INR",
+        "receipt": f"{input.event_id[:24]}-{uuid.uuid4().hex[:8]}",
+        "payment_capture": 1,
+    })
+    await db.payments.insert_one({
+        "order_id": order["id"],
+        "event_id": input.event_id,
+        "name": input.name.strip(),
+        "email": email,
+        "amount": price,
+        "status": "created",
+        "created_at": now_iso(),
+    })
+    return {
+        "order_id": order["id"],
+        "amount": order["amount"],
+        "currency": "INR",
+        "key_id": os.environ.get("RAZORPAY_KEY_ID", ""),
+        "event": event,
+    }
+
+
+@api_router.post("/payments/verify")
+async def verify_payment(input: PaymentVerify):
+    client = rzp_client()
+    if not client:
+        raise HTTPException(status_code=503, detail="Payments are not configured yet.")
+    try:
+        client.utility.verify_payment_signature({
+            "razorpay_order_id": input.order_id,
+            "razorpay_payment_id": input.payment_id,
+            "razorpay_signature": input.signature,
+        })
+    except Exception:
+        raise HTTPException(status_code=400, detail="Payment signature verification failed.")
+
+    await db.payments.update_one(
+        {"order_id": input.order_id},
+        {"$set": {"status": "paid", "payment_id": input.payment_id}},
+    )
+    return {"status": "paid"}
 
 
 app.include_router(api_router)
@@ -187,25 +317,6 @@ app.add_middleware(
 logging.basicConfig(level=logging.INFO)
 
 
-async def seed_events() -> None:
-    seed = dict(SEED_EVENT)
-    whatsapp = os.environ.get("WHATSAPP_GROUP_URL", "")
-    if whatsapp:
-        seed["whatsapp_url"] = whatsapp
-    try:
-        await db.events.update_one(
-            {"id": seed["id"]},
-            {
-                "$setOnInsert": {k: v for k, v in seed.items() if k != "whatsapp_url"},
-                "$set": {"whatsapp_url": seed["whatsapp_url"]},
-            },
-            upsert=True,
-        )
-        logging.getLogger(__name__).info("seeded event %s", seed["id"])
-    except Exception as exc:
-        logging.getLogger(__name__).error("seed_events: %s", exc)
-
-
 @app.on_event("startup")
 async def start_index_build():
     app.state.index_task = asyncio.create_task(ensure_indexes())
@@ -215,6 +326,8 @@ async def start_index_build():
 @app.on_event("shutdown")
 async def shutdown_db_client():
     app.state.index_task.cancel()
+    app.state.seed_task.cancel()
     with suppress(asyncio.CancelledError):
         await app.state.index_task
+        await app.state.seed_task
     client.close()

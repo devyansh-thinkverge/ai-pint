@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import axios from "axios";
 import {
@@ -15,7 +16,7 @@ const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
 export default function Events() {
   const [event, setEvent] = useState(null);
-  const [form, setForm] = useState({ name: "", email: "", phone: "", company: "" });
+  const [form, setForm] = useState({ name: "", email: "", company: "", bio: "" });
   const [status, setStatus] = useState("idle"); // idle | loading | success | error
   const [message, setMessage] = useState("");
   const [whatsappUrl, setWhatsappUrl] = useState("");
@@ -39,8 +40,8 @@ export default function Events() {
         event_id: event.id,
         name: form.name,
         email: form.email,
-        phone: form.phone,
         company: form.company,
+        bio: form.bio,
       });
       setWhatsappUrl(res.data.whatsapp_url || "");
       setStatus("success");
@@ -81,7 +82,7 @@ export default function Events() {
             {/* event details */}
             <div className="p-8 sm:p-12">
               <span className="inline-block rounded-full bg-amber-400 px-4 py-1.5 text-[11px] font-extrabold uppercase tracking-widest text-brew-ink">
-                Upcoming · Delhi NCR
+                Upcoming · {event.city}
               </span>
               <h3
                 data-testid="event-title"
@@ -117,6 +118,14 @@ export default function Events() {
                   </span>
                 ))}
               </div>
+              <Link
+                to={`/events/${event.id}`}
+                data-testid="event-details-link"
+                className="group mt-8 inline-flex items-center gap-2 text-sm font-extrabold text-amber-400 hover:text-amber-300"
+              >
+                View event details
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Link>
             </div>
 
             {/* booking form */}
@@ -164,70 +173,35 @@ export default function Events() {
                       Book your seat
                     </h4>
                     <p className="text-sm text-brew-foam/70">
-                      Seats are limited at CyberHub. Book now — it's free.
+                      Seats are limited at {event.venue.split(",")[0]}. Book now — it's free.
                     </p>
-                    <div>
-                      <label htmlFor="booking-name" className="mb-1.5 block text-xs font-extrabold uppercase tracking-widest text-brew-foam/60">
-                        Full name
-                      </label>
-                      <input
-                        id="booking-name"
-                        required
-                        value={form.name}
-                        onChange={set("name")}
-                        data-testid="booking-name-input"
-                        placeholder="Your name"
-                        className="h-12 w-full rounded-xl border border-white/15 bg-white/10 px-4 text-base text-brew-foam placeholder:text-brew-foam/40 outline-none transition-colors focus:border-amber-400"
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="booking-email" className="mb-1.5 block text-xs font-extrabold uppercase tracking-widest text-brew-foam/60">
-                        Work email
-                      </label>
-                      <input
-                        id="booking-email"
-                        type="email"
-                        required
-                        value={form.email}
-                        onChange={set("email")}
-                        data-testid="booking-email-input"
-                        placeholder="you@company.com"
-                        className="h-12 w-full rounded-xl border border-white/15 bg-white/10 px-4 text-base text-brew-foam placeholder:text-brew-foam/40 outline-none transition-colors focus:border-amber-400"
-                      />
-                    </div>
-                    <div className="grid gap-4 sm:grid-cols-2">
-                      <div>
-                        <label htmlFor="booking-phone" className="mb-1.5 block text-xs font-extrabold uppercase tracking-widest text-brew-foam/60">
-                          Phone (optional)
+                    {[
+                      { key: "name", label: "Full name", type: "text", placeholder: "Your name", required: true, tid: "booking-name-input" },
+                      { key: "email", label: "Email", type: "email", placeholder: "you@company.com", required: true, tid: "booking-email-input" },
+                      { key: "company", label: "Company (optional)", type: "text", placeholder: "Where you work", required: false, tid: "booking-company-input" },
+                      { key: "bio", label: "One-line bio (optional)", type: "text", placeholder: "What do you want from the evening?", required: false, tid: "booking-bio-input" },
+                    ].map((f) => (
+                      <div key={f.key}>
+                        <label htmlFor={f.tid} className="mb-1.5 block text-xs font-extrabold uppercase tracking-widest text-brew-foam/60">
+                          {f.label}
                         </label>
                         <input
-                          id="booking-phone"
-                          value={form.phone}
-                          onChange={set("phone")}
-                          data-testid="booking-phone-input"
-                          placeholder="+91"
+                          id={f.tid}
+                          type={f.type}
+                          required={f.required}
+                          value={form[f.key]}
+                          onChange={set(f.key)}
+                          data-testid={f.tid}
+                          placeholder={f.placeholder}
                           className="h-12 w-full rounded-xl border border-white/15 bg-white/10 px-4 text-base text-brew-foam placeholder:text-brew-foam/40 outline-none transition-colors focus:border-amber-400"
                         />
                       </div>
-                      <div>
-                        <label htmlFor="booking-company" className="mb-1.5 block text-xs font-extrabold uppercase tracking-widest text-brew-foam/60">
-                          Company (optional)
-                        </label>
-                        <input
-                          id="booking-company"
-                          value={form.company}
-                          onChange={set("company")}
-                          data-testid="booking-company-input"
-                          placeholder="Where you work"
-                          className="h-12 w-full rounded-xl border border-white/15 bg-white/10 px-4 text-base text-brew-foam placeholder:text-brew-foam/40 outline-none transition-colors focus:border-amber-400"
-                        />
-                      </div>
-                    </div>
+                    ))}
                     <button
                       type="submit"
                       disabled={status === "loading"}
                       data-testid="booking-submit-button"
-                      className="group mt-2 inline-flex h-13 w-full items-center justify-center gap-2 rounded-xl bg-amber-400 py-3.5 text-sm font-extrabold text-brew-ink transition-all hover:bg-amber-300 hover:shadow-xl hover:shadow-amber-400/25 disabled:opacity-60"
+                      className="mt-2 inline-flex h-12 w-full items-center justify-center rounded-xl bg-amber-400 text-sm font-extrabold text-brew-ink transition-all hover:bg-amber-300 hover:shadow-xl hover:shadow-amber-400/25 disabled:opacity-60"
                     >
                       {status === "loading" ? "Booking..." : "Book my seat — free"}
                     </button>

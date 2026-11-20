@@ -2,6 +2,7 @@ import React from "react";
 import "@/App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Landing from "@/pages/Landing";
+import EventDetails from "@/pages/EventDetails";
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -37,6 +38,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Landing />} />
+          <Route path="/events/:id" element={<EventDetails />} />
         </Routes>
       </BrowserRouter>
     </ErrorBoundary>
