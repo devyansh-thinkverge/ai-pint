@@ -1,15 +1,10 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, Beer, CalendarDays, MapPin } from "lucide-react";
 import { useLenis } from "lenis/react";
 
 const HERO_IMG =
   "https://customer-assets-0z36b82j.emergentagent.net/job_ai-pint--08esny1p/artifacts/9d6f5e18e1d8b80f_WhatsApp%20Image%202026-11-10%20at%205.34.02%20PM.jpeg";
-
-const SLICES = 8;
-const HOLD_MS = 950;
-const SLICE_STAGGER = 60;
-const SLICE_DUR = 750;
 
 const lines = ["Where India", "talks AI —", "over a pint."];
 
@@ -36,23 +31,6 @@ export default function Hero() {
   const imgY = useTransform(scrollYProgress, [0, 1], ["0%", "18%"]);
   const imgRotate = useTransform(scrollYProgress, [0, 1], [0, -3]);
 
-  const [revealed, setRevealed] = useState(false);
-  const [cutDone, setCutDone] = useState(false);
-
-  useEffect(() => {
-    const t1 = setTimeout(() => setRevealed(true), HOLD_MS);
-    const t2 = setTimeout(
-      () => setCutDone(true),
-      HOLD_MS + SLICES * SLICE_STAGGER + SLICE_DUR + 100,
-    );
-    return () => {
-      clearTimeout(t1);
-      clearTimeout(t2);
-    };
-  }, []);
-
-  const anim = revealed ? "show" : "hidden";
-
   return (
     <section
       id="top"
@@ -75,7 +53,7 @@ export default function Hero() {
           <motion.div
             variants={fadeUp(0.1)}
             initial="hidden"
-            animate={anim}
+            animate="show"
             className="inline-flex flex-wrap items-center gap-2 rounded-full border border-brew-amber/30 bg-brew-cream/80 px-4 py-2 text-xs sm:text-sm font-bold text-brew-espresso"
           >
             <MapPin className="h-4 w-4 text-brew-amber" />
@@ -89,7 +67,7 @@ export default function Hero() {
                   custom={i}
                   variants={lineVariants}
                   initial="hidden"
-                  animate={anim}
+                  animate="show"
                 >
                   {i === 2 ? (
                     <>
@@ -106,7 +84,7 @@ export default function Hero() {
           <motion.p
             variants={fadeUp(0.55)}
             initial="hidden"
-            animate={anim}
+            animate="show"
             className="mt-7 max-w-xl text-base sm:text-lg leading-relaxed text-brew-espresso/80"
           >
             AI Taproom is an AI-powered community for everything in AI —
@@ -118,7 +96,7 @@ export default function Hero() {
           <motion.div
             variants={fadeUp(0.7)}
             initial="hidden"
-            animate={anim}
+            animate="show"
             className="mt-9 flex flex-wrap items-center gap-4"
           >
             <a
@@ -151,7 +129,7 @@ export default function Hero() {
         {/* visual */}
         <motion.div
           initial={{ opacity: 0, scale: 0.96 }}
-          animate={revealed ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.96 }}
+          animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.9, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
           className="relative"
         >
@@ -196,54 +174,6 @@ export default function Hero() {
           </motion.div>
         </motion.div>
       </div>
-
-      {/* THE CUT — full-bleed taproom scene sliced open to reveal the hero */}
-      {!cutDone && (
-        <div
-          className="absolute inset-0 z-40 overflow-hidden bg-brew-ink"
-          onClick={() => setRevealed(true)}
-          data-testid="hero-cut"
-          aria-hidden="true"
-        >
-          <div className="flex h-full w-full">
-            {Array.from({ length: SLICES }).map((_, i) => (
-              <motion.div
-                key={i}
-                initial={{ y: "0%" }}
-                animate={revealed ? { y: "-103%" } : { y: "0%" }}
-                transition={{
-                  duration: SLICE_DUR / 1000,
-                  delay: revealed ? i * (SLICE_STAGGER / 1000) : 0,
-                  ease: [0.76, 0, 0.24, 1],
-                }}
-                className="h-full flex-1"
-                style={{
-                  backgroundImage: `url(${HERO_IMG})`,
-                  backgroundSize: `${SLICES * 100}% 100%`,
-                  backgroundPosition: `${(i * 100) / (SLICES - 1)}% center`,
-                  borderRight:
-                    i < SLICES - 1 ? "1px solid rgba(250,250,249,0.14)" : "none",
-                  boxShadow: "0 0 40px rgba(0,0,0,0.35) inset",
-                }}
-              />
-            ))}
-          </div>
-          {/* brand mark over the scene */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: revealed ? 0 : 1, y: revealed ? -14 : 0 }}
-            transition={{ duration: 0.4 }}
-            className="absolute bottom-8 left-1/2 -translate-x-1/2 text-center"
-          >
-            <p className="font-display text-xl sm:text-2xl text-white/90">
-              AI Taproom
-            </p>
-            <p className="mt-1 text-[11px] font-extrabold uppercase tracking-[0.3em] text-amber-400">
-              Pouring in Delhi NCR
-            </p>
-          </motion.div>
-        </div>
-      )}
     </section>
   );
 }
