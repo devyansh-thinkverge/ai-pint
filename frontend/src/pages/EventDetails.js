@@ -263,18 +263,18 @@ export default function EventDetails() {
               <p className="text-xs font-extrabold uppercase tracking-[0.25em] text-amber-400">
                 Your speaker
               </p>
-              <div className="mt-6 flex flex-col gap-7 sm:flex-row sm:items-start">
+              <div className="grid gap-7 md:grid-cols-[320px_1fr] md:items-start">
                 {speaker.image ? (
                   <img
                     src={speaker.image}
                     alt={speaker.name}
                     data-testid="speaker-photo"
-                    className="h-44 w-44 shrink-0 rounded-2xl object-cover"
+                    className="aspect-[3/4] w-full rounded-2xl object-cover"
                   />
                 ) : (
                   <div
                     data-testid="speaker-photo"
-                    className="flex h-44 w-44 shrink-0 items-center justify-center rounded-2xl border border-amber-400/30 bg-amber-400/10 font-display text-6xl text-amber-400"
+                    className="flex aspect-[3/4] w-full items-center justify-center rounded-2xl border border-amber-400/30 bg-amber-400/10 font-display text-6xl text-amber-400"
                   >
                     {speaker.name.split(" ").map((w) => w[0]).join("")}
                   </div>
