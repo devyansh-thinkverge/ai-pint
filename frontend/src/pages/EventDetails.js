@@ -7,7 +7,6 @@ import {
   CalendarDays,
   Clock,
   Beer,
-  ArrowLeft,
   CheckCircle2,
   AlertCircle,
   ArrowRight,
@@ -125,9 +124,9 @@ export default function EventDetails() {
       <div className="mx-auto max-w-4xl px-5 sm:px-8">
         <Link
           to="/"
-          className="inline-flex items-center gap-2 text-sm font-bold text-brew-espresso/70 hover:text-brew-amber"
+          className="inline-flex items-center gap-2.5 text-sm font-bold text-brew-espresso/70 hover:text-brew-amber"
         >
-          <ArrowLeft className="h-4 w-4" />
+          <img src="/logo-mark.png" alt="" className="h-7 w-auto" draggable={false} />
           Back to the taproom
         </Link>
 

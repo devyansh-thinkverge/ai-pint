@@ -1,15 +1,13 @@
-import Logo from "./Logo";
-
 export default function Footer() {
   return (
     <footer className="border-t border-brew-espresso/10 bg-brew-foam py-12">
       <div className="mx-auto flex max-w-7xl flex-col items-center gap-8 px-5 sm:px-8 md:flex-row md:justify-between">
-        <a href="#top" onClick={(e) => e.preventDefault()} aria-label="AI Taproom">
-          <Logo
-            className="h-8 w-8"
-            textClass="text-base"
-            tagline="Brewed Intelligence"
-            taglineClass="text-[8px]"
+        <a href="#top" onClick={(e) => e.preventDefault()} aria-label="AI Taproom" data-testid="footer-logo">
+          <img
+            src="/logo-lockup.png"
+            alt="AI Taproom — A home for everything AI"
+            className="h-28 w-auto"
+            draggable={false}
           />
         </a>
 

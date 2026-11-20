@@ -26,7 +26,7 @@ export default function Navbar() {
           onClick={(e) => go(e, "#top")}
           aria-label="AI Taproom home"
         >
-          <Logo className="h-9 w-9" textClass="text-lg" />
+          <Logo className="h-9 w-auto" textClass="text-lg" />
         </a>
 
         <div className="hidden md:flex items-center gap-8">
