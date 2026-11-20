@@ -11,6 +11,9 @@ import {
   CheckCircle2,
   AlertCircle,
   ArrowRight,
+  Linkedin,
+  Instagram,
+  Navigation,
 } from "lucide-react";
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
@@ -113,6 +116,9 @@ export default function EventDetails() {
   if (!event) {
     return <div className="min-h-screen bg-brew-foam" />;
   }
+
+  const speaker = event.speaker || null;
+  const venue = event.venue_details || null;
 
   return (
     <div className="min-h-screen bg-brew-foam pb-24 pt-28">
@@ -242,6 +248,128 @@ export default function EventDetails() {
             </div>
           </div>
         </motion.div>
+
+        {/* speaker */}
+        {speaker && (
+          <motion.section
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6 }}
+            data-testid="speaker-section"
+            className="mt-10 overflow-hidden rounded-3xl bg-brew-ink text-brew-foam shadow-2xl shadow-brew-espresso/20"
+          >
+            <div className="p-8 sm:p-12">
+              <p className="text-xs font-extrabold uppercase tracking-[0.25em] text-amber-400">
+                Your speaker
+              </p>
+              <div className="mt-6 flex flex-col gap-7 sm:flex-row sm:items-start">
+                {speaker.image ? (
+                  <img
+                    src={speaker.image}
+                    alt={speaker.name}
+                    data-testid="speaker-photo"
+                    className="h-44 w-44 shrink-0 rounded-2xl object-cover"
+                  />
+                ) : (
+                  <div
+                    data-testid="speaker-photo"
+                    className="flex h-44 w-44 shrink-0 items-center justify-center rounded-2xl border border-amber-400/30 bg-amber-400/10 font-display text-6xl text-amber-400"
+                  >
+                    {speaker.name.split(" ").map((w) => w[0]).join("")}
+                  </div>
+                )}
+                <div>
+                  <h2 data-testid="speaker-name" className="font-display text-2xl sm:text-3xl font-semibold tracking-tight">
+                    {speaker.name}
+                  </h2>
+                  <p className="mt-1.5 text-sm font-bold text-amber-300">
+                    {speaker.role} · {speaker.company}
+                  </p>
+                  <p className="mt-4 text-sm sm:text-base leading-relaxed text-brew-foam/80">
+                    {speaker.bio}
+                  </p>
+                  {speaker.linkedin_url && (
+                    <a
+                      href={speaker.linkedin_url}
+                      target="_blank"
+                      rel="noreferrer"
+                      data-testid="speaker-linkedin"
+                      className="group mt-5 inline-flex items-center gap-2 text-sm font-extrabold text-amber-400 hover:text-amber-300"
+                    >
+                      <Linkedin className="h-4 w-4" />
+                      View LinkedIn profile
+                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    </a>
+                  )}
+                </div>
+              </div>
+            </div>
+          </motion.section>
+        )}
+
+        {/* venue */}
+        {venue && (
+          <motion.section
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.6 }}
+            data-testid="venue-section"
+            className="mt-10 overflow-hidden rounded-3xl bg-brew-ink text-brew-foam shadow-2xl shadow-brew-espresso/20"
+          >
+            <div className="grid md:grid-cols-[0.85fr_1.15fr]">
+              <div className="relative min-h-64">
+                <img
+                  src={venue.image}
+                  alt={venue.name}
+                  data-testid="venue-image"
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
+              </div>
+              <div className="p-8 sm:p-12">
+                <p className="text-xs font-extrabold uppercase tracking-[0.25em] text-amber-400">
+                  The venue
+                </p>
+                <h2 data-testid="venue-name" className="mt-4 font-display text-2xl sm:text-3xl font-semibold tracking-tight">
+                  {venue.name}
+                </h2>
+                <p className="mt-1.5 text-sm font-bold text-amber-300">{venue.tagline}</p>
+                <p className="mt-5 flex items-start gap-3 text-sm sm:text-base text-brew-foam/80">
+                  <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-amber-400" />
+                  {venue.address}
+                </p>
+                <p className="mt-4 text-sm sm:text-base leading-relaxed text-brew-foam/80">
+                  {venue.description}
+                </p>
+                <div className="mt-7 flex flex-wrap gap-3">
+                  <a
+                    href={venue.maps_url}
+                    target="_blank"
+                    rel="noreferrer"
+                    data-testid="venue-maps-link"
+                    className="inline-flex items-center gap-2 rounded-full bg-amber-400 px-5 py-2.5 text-sm font-extrabold text-brew-ink transition-all hover:bg-amber-300 hover:shadow-lg hover:shadow-amber-400/25"
+                  >
+                    <Navigation className="h-4 w-4" />
+                    Open in Maps
+                  </a>
+                  {venue.instagram_url && (
+                    <a
+                      href={venue.instagram_url}
+                      target="_blank"
+                      rel="noreferrer"
+                      data-testid="venue-insta-link"
+                      className="inline-flex items-center gap-2 rounded-full border border-white/20 px-5 py-2.5 text-sm font-extrabold text-brew-foam transition-all hover:border-amber-400 hover:text-amber-300"
+                    >
+                      <Instagram className="h-4 w-4" />
+                      @diablocyberhub
+                    </a>
+                  )}
+                </div>
+              </div>
+            </div>
+          </motion.section>
+        )}
       </div>
     </div>
   );

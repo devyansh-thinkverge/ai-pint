@@ -118,6 +118,32 @@ export default function Events() {
                   </span>
                 ))}
               </div>
+              {event.speaker && (
+                <div
+                  data-testid="event-speaker-row"
+                  className="mt-8 flex items-center gap-3.5 rounded-2xl border border-white/10 bg-white/[0.04] p-3.5"
+                >
+                  {event.speaker.image ? (
+                    <img
+                      src={event.speaker.image}
+                      alt={event.speaker.name}
+                      className="h-11 w-11 shrink-0 rounded-full object-cover"
+                    />
+                  ) : (
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-amber-400/15 text-sm font-extrabold text-amber-400">
+                      {event.speaker.name.split(" ").map((w) => w[0]).join("")}
+                    </span>
+                  )}
+                  <div>
+                    <p className="text-sm font-bold text-brew-foam">
+                      Talk by {event.speaker.name}
+                    </p>
+                    <p className="text-xs text-brew-foam/70">
+                      {event.speaker.role} · {event.speaker.company}
+                    </p>
+                  </div>
+                </div>
+              )}
               <Link
                 to={`/events/${event.id}`}
                 data-testid="event-details-link"

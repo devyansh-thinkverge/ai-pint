@@ -6,6 +6,7 @@ import uuid
 from contextlib import suppress
 from datetime import datetime, timezone
 from pathlib import Path
+from typing import Optional
 
 from dotenv import load_dotenv
 from fastapi import FastAPI, APIRouter, HTTPException
@@ -45,12 +46,44 @@ INDEXES: dict[str, list[IndexModel]] = {
 SEED_EVENT = {
     "id": "agentic-ai-gurugram-dec19",
     "title": "Agentic AI: Trust, Control & Scale",
-    "venue": "CyberHub, Gurugram",
+    "venue": "Diablo, CyberHub Gurugram",
     "city": "Delhi NCR",
     "date_label": "Fri, 19 December",
     "time_label": "6:00 PM – 8:00 PM",
     "price": 0,
-    "whatsapp_url": os.environ.get("WHATSAPP_GROUP_URL", ""),
+    "speaker": {
+        "name": "Sachin Arora",
+        "role": "Partner & Head of iDAC — Intelligent Data, Agents & Cloud",
+        "company": "PwC India",
+        "bio": (
+            "23+ years across Yahoo, Oracle, AWS and KPMG — and now Partner at "
+            "PwC India, where he heads iDAC: Intelligent Data, Agents & Cloud. "
+            "Sachin helps India's largest enterprises move from AI pilots to "
+            "agentic systems that actually run the business — with the context "
+            "engineering, architecture and governance to keep them trustworthy. "
+            "Exactly the ground tonight's talk covers."
+        ),
+        "image": "/speaker-sachin-arora.jpg",
+        "linkedin_url": "https://www.linkedin.com/in/sacarora/",
+    },
+    "venue_details": {
+        "name": "Diablo",
+        "tagline": "Mediterranean rooftop restobar at DLF CyberHub",
+        "address": (
+            "Units 209B–210, 2nd Floor, DLF Cyber Hub, DLF Cyber City, "
+            "Sector 24, Gurugram, Haryana 122002"
+        ),
+        "description": (
+            "A Mediterranean-inspired rooftop restobar overlooking the DLF "
+            "CyberHub plaza — warm wood, glowing lights and Bent Chair décor, "
+            "with globally-inspired plates, signature cocktails and live music "
+            "after dark. Our evening takes over the terrace: doors at 6 PM, "
+            "the first pint is on us."
+        ),
+        "image": "/venue-diablo-cyberhub.jpg",
+        "instagram_url": "https://www.instagram.com/diablocyberhub/",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=Diablo%20CyberHub%20Gurugram",
+    },
 }
 
 EMAIL_RE = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
@@ -84,10 +117,7 @@ async def seed_events() -> None:
     try:
         await db.events.update_one(
             {"id": seed["id"]},
-            {
-                "$setOnInsert": {k: v for k, v in seed.items() if k != "whatsapp_url"},
-                "$set": {"whatsapp_url": seed["whatsapp_url"]},
-            },
+            {"$set": {k: v for k, v in seed.items()}},
             upsert=True,
         )
         logging.getLogger(__name__).info("seeded event %s", seed["id"])
@@ -128,6 +158,8 @@ class Event(BaseModel):
     time_label: str
     price: int = 0
     whatsapp_url: str = ""
+    speaker: Optional[dict] = None
+    venue_details: Optional[dict] = None
 
 
 class Booking(BaseModel):
