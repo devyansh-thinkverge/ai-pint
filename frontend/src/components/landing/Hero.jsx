@@ -3,7 +3,7 @@ import { cubicBezier, motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, Beer, CalendarDays, ChevronDown, MapPin } from "lucide-react";
 import { useLenis } from "lenis/react";
 
-const SCENE_IMG = "/hero-3d-render.jpg";
+const SCENE_IMG = "/hero-3d-render-v2.jpg";
 const SLICES = 8;
 const EASE = cubicBezier(0.76, 0, 0.24, 1);
 
